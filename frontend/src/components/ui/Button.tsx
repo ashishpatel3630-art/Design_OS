@@ -5,7 +5,7 @@ interface ButtonProps {
   className?: string;
 }
 
-export default function Button({ children, className }: ButtonProps) {
+export default function ButtonUI({ children, className }: ButtonProps) {
   return (
     <button
       className={cn(
@@ -14,10 +14,8 @@ px-6
 py-3
 rounded-full
 font-medium
-text-white
-bg-gradient-to-r
-from-purple-500
-to-cyan-500
+text-black
+bg-["#020A20"]
 transition-all
 duration-300
 hover:scale-105
