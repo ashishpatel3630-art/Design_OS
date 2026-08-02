@@ -1,15 +1,30 @@
 :root {
 
-  /* Colors */
+  /* =====================
+     COLORS
+  ====================== */
 
-  --background: #050505;
-  --foreground: #ffffff;
+  --bg-primary: #050505;
+  --bg-secondary: #0b0b0f;
+
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+
+
+  /* Brand Colors */
 
   --primary: #8b5cf6;
+  --primary-light: #a78bfa;
+
   --secondary: #06b6d4;
 
+  --accent: #ec4899;
 
-  /* Gradients */
+
+
+  /* =====================
+     GRADIENTS
+  ====================== */
 
   --gradient-primary:
   linear-gradient(
@@ -19,25 +34,83 @@
   );
 
 
-  /* Radius */
+  --gradient-purple:
+  linear-gradient(
+    135deg,
+    #7c3aed,
+    #ec4899
+  );
+
+
+  --gradient-dark:
+  linear-gradient(
+    180deg,
+    #111827,
+    #050505
+  );
+
+
+
+  /* =====================
+     GLASS
+  ====================== */
+
+
+  --glass-bg:
+  rgba(255,255,255,0.08);
+
+
+  --glass-border:
+  rgba(255,255,255,0.12);
+
+
+
+  /* =====================
+     BORDER RADIUS
+  ====================== */
+
 
   --radius-sm:8px;
+
   --radius-md:16px;
+
   --radius-lg:24px;
 
+  --radius-xl:32px;
 
-  /* Shadows */
+
+
+  /* =====================
+     SHADOWS
+  ====================== */
+
+
+  --shadow-sm:
+  0 4px 10px rgba(0,0,0,.2);
+
+
+  --shadow-md:
+  0 10px 30px rgba(0,0,0,.3);
+
 
   --shadow-glow:
-  0 0 40px rgba(139,92,246,0.4);
+  0 0 40px
+  rgba(139,92,246,.35);
 
 
-  /* Spacing */
+
+  /* =====================
+     SPACING
+  ====================== */
+
 
   --space-1:4px;
   --space-2:8px;
   --space-3:16px;
   --space-4:24px;
   --space-5:32px;
+  --space-6:48px;
+  --space-7:64px;
+
 
 }
