@@ -1,122 +1,97 @@
 "use client";
 
-import { Sparkles, Moon } from "lucide-react";
+import { useState } from "react";
+import { Sparkles, Moon, Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  return (
-    <nav
-      className="
-      fixed
-      top-0
-      left-0
-      right-0
-      z-50
-      px-8
-      py-4
-      "
-    >
-      <div
-        className="
-        max-w-7xl
-        mx-auto
-        flex
-        items-center
-        justify-between
-        rounded-2xl
-        border
-        border-white/10
-        bg-black/30
-        backdrop-blur-xl
-        px-6
-        py-3
-        shadow-xl
-        "
-      >
-        {/* Logo */}
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-        <div className="flex items-center gap-3">
-          <div
-            className="
-            flex
-            h-10
-            w-10
-            items-center
-            justify-center
+  const navLinks = ["Colors", "Gradients", "Typography", "Components"];
+
+  return (
+    <nav className="w-full bg-black border-b border-white/10">
+      <div className="w-full px-4 sm:px-6 lg:px-10">
+        <div className="h-16 flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <div
+              className="
+            h-10 w-10
             rounded-xl
-            bg-gradient-to-br
-            from-purple-500
-            to-blue-500
-            "
-          >
-            <Sparkles size={22} />
+            bg-blue-500
+            flex items-center justify-center
+            text-white
+          "
+            >
+              <Sparkles size={22} />
+            </div>
+
+            <h1 className="text-xl font-bold text-white">Design OS</h1>
           </div>
 
-          <h1
+          {/* Desktop Links */}
+          <div
             className="
-            text-xl
-            font-bold
-            tracking-wide
-            "
-          >
-            Design OS
-          </h1>
-        </div>
-
-        {/* Navigation */}
-
-        <div
-          className="
-          hidden
-          md:flex
+          hidden lg:flex
           items-center
           gap-8
           text-sm
-          text-gray-300
+          text-gray-400
           "
-        >
-          <a className="hover:text-white transition">Colors</a>
+          >
+            {navLinks.map((link) => (
+              <a key={link} href="#">
+                {link}
+              </a>
+            ))}
+          </div>
 
-          <a className="hover:text-white transition">Gradients</a>
-
-          <a className="hover:text-white transition">Typography</a>
-
-          <a className="hover:text-white transition">Components</a>
-        </div>
-
-        {/* Actions */}
-
-        <div className="flex items-center gap-4">
-          <button
-            className="
-            h-10
-            w-10
+          {/* Right Actions */}
+          <div className="flex items-center gap-5">
+            <button
+              className="
+            h-10 w-10
             rounded-xl
-            border
-            border-white/10
+            border border-white/10
             bg-white/5
-            hover:bg-white/10
-            transition
-            "
-          >
-            <Moon size={18} />
-          </button>
+            flex items-center justify-center
+            text-gray-300
+          "
+            >
+              <Moon size={18} />
+            </button>
 
-          <button
-            className="
-            hidden
-            md:block
-            rounded-xl
-            bg-white
+            <button
+              className="
+            hidden sm:inline-flex
+            items-center justify-center
+            h-9
             px-5
-            py-2
+            rounded-lg
+            bg-white
             text-black
+            text-sm
             font-medium
-            hover:scale-105
-            transition
+            whitespace-nowrap
             "
-          >
-            Build System
-          </button>
+            >
+              Build System
+            </button>
+
+            <button
+              className="
+            lg:hidden
+            h-10 w-10
+            rounded-xl
+            border border-white/10
+            bg-white/5
+            flex items-center justify-center
+            text-gray-300
+          "
+            >
+              <Menu size={20} />
+            </button>
+          </div>
         </div>
       </div>
     </nav>
