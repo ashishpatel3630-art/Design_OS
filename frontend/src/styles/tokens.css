@@ -1,0 +1,43 @@
+:root {
+
+  /* Colors */
+
+  --background: #050505;
+  --foreground: #ffffff;
+
+  --primary: #8b5cf6;
+  --secondary: #06b6d4;
+
+
+  /* Gradients */
+
+  --gradient-primary:
+  linear-gradient(
+    135deg,
+    #8b5cf6,
+    #06b6d4
+  );
+
+
+  /* Radius */
+
+  --radius-sm:8px;
+  --radius-md:16px;
+  --radius-lg:24px;
+
+
+  /* Shadows */
+
+  --shadow-glow:
+  0 0 40px rgba(139,92,246,0.4);
+
+
+  /* Spacing */
+
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:16px;
+  --space-4:24px;
+  --space-5:32px;
+
+}
