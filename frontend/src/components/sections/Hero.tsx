@@ -1,23 +1,20 @@
 "use client";
-
 import { motion } from "framer-motion";
 import Image from "next/image";
 import ButtonUI from "../ui/ButtonUI";
-
+import DesignerSection from "./DesignerSection";
 export default function Hero() {
   return (
+        
+    
     <section className="relative min-h-screen bg-white overflow-hidden px-6 lg:px-20 pt-20 flex flex-col justify-between">
-      {/* Background Glow */}
       <div className="absolute top-20 right-40 w-96 h-96 bg-purple-200 blur-[120px] rounded-full opacity-40 pointer-events-none" />
-
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center w-full my-auto">
-        {/* LEFT CONTENT */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Badge */}
           <div className="inline-flex px-4 py-2 rounded-full bg-purple-50 text-purple-600 text-xs font-medium mb-6">
             The Future of Creative Design
           </div>
@@ -35,26 +32,21 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-lg text-gray-500 text-sm leading-relaxed">
-            Design Universe OS is an all-in-one creative operating system
-            that helps designers explore colors, typography, motion and
-            interactive experiences with AI powered tools.
+            Design Universe OS is an all-in-one creative operating system that
+            helps designers explore colors, typography, motion and interactive
+            experiences with AI powered tools.
           </p>
-
-          {/* BUTTONS (Using ButtonUI) */}
           <div className="flex flex-wrap gap-4 mt-8 items-center">
             <ButtonUI text="Enter Universe" />
             <ButtonUI text="Explore Palette" variant="secondary" />
           </div>
         </motion.div>
-
-        {/* RIGHT DESIGN */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
           className="relative h-[520px]"
         >
-          {/* MAIN IMAGE */}
           <motion.div
             animate={{ y: [0, -15, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -68,8 +60,6 @@ export default function Hero() {
               className="rounded-2xl w-full object-cover"
             />
           </motion.div>
-
-          {/* Floating Card 1 (Typography) */}
           <motion.div
             animate={{ y: [0, 15, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -78,8 +68,6 @@ export default function Hero() {
             <h3 className="text-4xl font-bold font-serif text-black">Ag</h3>
             <p className="text-xs text-gray-400 mt-1">Typography</p>
           </motion.div>
-
-          {/* Floating Card 2 (Color Palette) */}
           <motion.div
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
@@ -90,12 +78,12 @@ export default function Hero() {
               <span className="w-8 h-8 bg-blue-500 rounded-md" />
               <span className="w-8 h-8 bg-yellow-400 rounded-md" />
             </div>
-            <p className="text-xs mt-3 text-gray-500 font-medium">Color Generator</p>
+            <p className="text-xs mt-3 text-gray-500 font-medium">
+              Color Generator
+            </p>
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Floating Bottom Color Strip (From Reference Image) */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -110,6 +98,7 @@ export default function Hero() {
           <span className="w-8 h-8 rounded-lg bg-[#FFFF00]" />
         </div>
       </motion.div>
+      <DesignerSection/>
     </section>
   );
 }
