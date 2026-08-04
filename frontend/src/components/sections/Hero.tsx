@@ -1,5 +1,6 @@
 import Navbar from "../navbar/Navbar";
 import ButtonUI from "../ui/ButtonUI";
+import FeaturesSection from "./Features";
 function Hero() {
   return (
     <>
@@ -14,17 +15,17 @@ function Hero() {
             </p>
           </div>
 
-          {/* Heading */}
+          
           <h1 className="mt-10 text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight text-amber-50">
             Create
             <br />
-            <span className="bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-white to-neutral-300 bg-clip-text text-transparent">
               Colors, Typography
             </span>
             <br />& Motion
           </h1>
 
-          {/* Description */}
+          
           <p className="mx-20 max-w-3xl  gap-44 text-lg md:text-xl leading-8 text-neutral-300">
             Design OS is your all-in-one creative operating system for designersc
             and developers. Generate color systems, typography, gradients,
@@ -38,7 +39,7 @@ function Hero() {
           <ButtonUI text="Live Demo" variant="secondary" />
 
           </div>
-          {/* Stats */}
+          
           <div className="mt-20 flex justify-center gap-32 flex-wrap">
             <div>
               <h2 className="text-4xl font-bold text-amber-50">100K+</h2>
@@ -54,9 +55,14 @@ function Hero() {
               <h2 className="text-4xl font-bold text-amber-50">20+</h2>
               <p className="text-neutral-500 mt-2">Creative Tools</p>
             </div>
+
           </div>
+          
         </div>
       </section>
+       <div className="mt-20 flex justify-center gap-32 flex-wrap h-100vh bg-black">
+            <FeaturesSection/>
+          </div>
     </>
   );
 }
