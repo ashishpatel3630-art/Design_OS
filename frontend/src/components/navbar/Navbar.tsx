@@ -9,7 +9,8 @@ export default function Navbar() {
   const navLinks = ["Colors", "Gradients", "Typography", "Components"];
 
   return (
-    <nav className="fixed 
+    <nav
+      className="fixed 
     top-2 
     left-0 
     right-0 
@@ -20,9 +21,10 @@ export default function Navbar() {
     pointer-events-none 
     flex 
     justify-center
-    ">
-      
-      <div className="
+    "
+    >
+      <div
+        className="
       w-full 
       max-w-5xl
       pointer-events-auto 
@@ -34,51 +36,59 @@ export default function Navbar() {
       py-3 
       shadow-2xl 
       transition-all
-      ">
-        <div className="
+      "
+      >
+        <div
+          className="
         flex 
         items-center 
         justify-between 
         gap-6
-        ">
-          
-         
-          <div className="
+        "
+        >
+          <div
+            className="
           flex 
           items-center 
           gap-3 
           cursor-pointer 
           shrink-0
-          ">
-            <div className="
+          "
+          >
+            <div
+              className="
             h-10 
             w-10 rounded-xl 
             bg-gradient-to-br from-purple-400 to-blue-600 
             flex items-center 
             justify-center 
             text-white 
-            shadow-md">
+            shadow-md"
+            >
               <Sparkles size={20} />
             </div>
-            <h1 className="
+            <h1
+              className="
             text-xl 
             font-bold 
             text-white 
             tracking-tight
-            ">
+            "
+            >
               Design OS
             </h1>
           </div>
 
-          
-          <div className="
+          <div
+            className="
           hidden 
           lg:flex 
           items-center 
           gap-8 text-sm 
           text-gray-300 
           font-medium
-          ">
+          "
+          >
             {navLinks.map((link) => (
               <a
                 key={link}
@@ -95,15 +105,15 @@ export default function Navbar() {
             ))}
           </div>
 
-         
-          <div className="
+          <div
+            className="
           flex 
           items-center 
           gap-3 
           sm:gap-4 
           shrink-0
-          ">
-           
+          "
+          >
             <button
               aria-label="Toggle theme"
               className="
@@ -122,8 +132,8 @@ export default function Navbar() {
               <Moon size={18} />
             </button>
 
-            
-            <button className="
+            <button
+              className="
             hidden 
             sm:inline-flex 
             items-center 
@@ -143,21 +153,26 @@ export default function Navbar() {
             hover:shadow-md 
             transition-all 
             active:scale-95
-            ">
-              <span className="
+            "
+            >
+              <span
+                className="
               flex 
               items-center 
               justify-center
-              ">
+              "
+              >
                 Explore
-                </span>
-              <ArrowRight size={16} className="
+              </span>
+              <ArrowRight
+                size={16}
+                className="
               text-slate-950 
               shrink-0
-              " />
+              "
+              />
             </button>
 
-            
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle mobile menu"
@@ -179,7 +194,6 @@ export default function Navbar() {
           </div>
         </div>
 
-       
         {mobileMenuOpen && (
           <div className="lg:hidden mt-4 pt-4 border-t border-white/10 flex flex-col gap-3 text-gray-300">
             {navLinks.map((link) => (
@@ -198,11 +212,14 @@ export default function Navbar() {
                 {link}
               </a>
             ))}
-            <div className="
+            <div
+              className="
             pt-2 
             border-t border-white/10
-            ">
-              <button className="
+            "
+            >
+              <button
+                className="
               w-full 
               h-11 
               inline-flex 
@@ -217,7 +234,8 @@ export default function Navbar() {
               leading-none 
               hover:bg-gray-100 
               transition-all
-              ">
+              "
+              >
                 <span>Explore</span>
                 <ArrowRight size={16} />
               </button>
