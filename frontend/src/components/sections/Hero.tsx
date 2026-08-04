@@ -1,6 +1,7 @@
 import Navbar from "../navbar/Navbar";
 import ButtonUI from "../ui/ButtonUI";
 import FeaturesSection from "./Features";
+import Design from "./Design";
 function Hero() {
   return (
     <>
@@ -15,7 +16,6 @@ function Hero() {
             </p>
           </div>
 
-          
           <h1 className="mt-10 text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight text-amber-50">
             Create
             <br />
@@ -25,21 +25,18 @@ function Hero() {
             <br />& Motion
           </h1>
 
-          
           <p className="mx-20 max-w-3xl  gap-44 text-lg md:text-xl leading-8 text-neutral-300">
-            Design OS is your all-in-one creative operating system for designersc
-            and developers. Generate color systems, typography, gradients,
-            animations, design tokens, and much more—all from one premium
-            workspace.
+            Design OS is your all-in-one creative operating system for
+            designersc and developers. Generate color systems, typography,
+            gradients, animations, design tokens, and much more—all from one
+            premium workspace.
           </p>
 
-         
           <div className="mt-20 flex justify-center gap-6 flex-wrap">
             <ButtonUI text="Get Started" variant="primary" />
-          <ButtonUI text="Live Demo" variant="secondary" />
-
+            <ButtonUI text="Live Demo" variant="secondary" />
           </div>
-          
+
           <div className="mt-20 flex justify-center gap-32 flex-wrap">
             <div>
               <h2 className="text-4xl font-bold text-amber-50">100K+</h2>
@@ -55,14 +52,15 @@ function Hero() {
               <h2 className="text-4xl font-bold text-amber-50">20+</h2>
               <p className="text-neutral-500 mt-2">Creative Tools</p>
             </div>
-
           </div>
-          
         </div>
       </section>
-       <div className="mt-20 flex justify-center gap-32 flex-wrap h-100vh bg-black">
-            <FeaturesSection/>
-          </div>
+      <div className="mt-20 flex justify-center gap-32 flex-wrap h-100vh bg-black">
+        <FeaturesSection />
+      </div>
+      <div className="mt-20 flex justify-center gap-20 flex-wrap h-100 bg-black">
+        <Design />
+      </div>
     </>
   );
 }
