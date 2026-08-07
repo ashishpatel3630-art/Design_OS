@@ -50,7 +50,7 @@ function DesignTools() {
         -translate-x-1/2
         w-[600px]
         h-[300px]
-        bg-gray-900
+        bg-black-900
         blur-[140px]
         rounded-full
         "
@@ -64,7 +64,6 @@ function DesignTools() {
         px-6
         "
       >
-
         <motion.div
           initial={{
             opacity: 0,

@@ -140,7 +140,7 @@ export default function Hero() {
     mouseY.set(0);
   };
 
-  const words = ["Design", "Intelligence", "Without", "Limits"];
+  const words = ["Create Colors", "Typography", "Motion", "Like" ,"Never Before"];
 
   return (
     <section
