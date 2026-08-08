@@ -1,7 +1,10 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 import ColorCard from "../Feature/ColorCard";
-
+import TypoCard from "../Feature/TypoCard";
+import GradientCard from "../Feature/GradientCard";
+import ShadowCard from "../Feature/ShadowCard";
+import MotionCard from "../Feature/MotionCard";
 function Features() {
   return (
     <section className="relative min-h-screen overflow-hidden px-6 bg-black">
@@ -96,8 +99,12 @@ function Features() {
         </motion.p>
 
         {/* Color Card */}
-        <div className="mt-16 w-full ">
+        <div className="mt-16 w-50% flex flex-wrap gap-20 ">
           <ColorCard />
+          <TypoCard/>
+          <GradientCard/>
+          <ShadowCard/>
+          <MotionCard/>
         </div>
       </div>
     </section>
