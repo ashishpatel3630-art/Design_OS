@@ -35,8 +35,23 @@ function ColorCard() {
     },
   ];
 
-  return (
-    <div className="group relative min-h-[560px] overflow-hidden rounded-[32px] border border-white/[0.08] bg-[#080808] p-7 text-white shadow-[0_30px_100px_rgba(0,0,0,0.45)] transition-all duration-500 hover:border-white/[0.14]">
+return (
+  <div
+    className="
+      group
+      relative
+      h-full
+      min-h-[680px]
+      overflow-hidden
+      rounded-[28px]
+      border
+      border-white/[0.08]
+      bg-[#090909]
+      p-7
+      sm:p-8
+      lg:p-9
+    "
+  >
       {/* Ambient glow */}
       <div className="pointer-events-none absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full bg-white/[0.035] blur-[120px] transition-all duration-700 group-hover:bg-white/[0.06]" />
 
