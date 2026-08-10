@@ -1,7 +1,18 @@
+import { Routes, Route, Navigate } from "react-router-dom";
+
 import Dashboard from "./pages/Dashboard";
+import ColorRealm from "./pages/dashboard/ColorRealm";
 
 function App() {
-  return <Dashboard />;
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+      <Route path="/dashboard" element={<Dashboard />} />
+
+      <Route path="/dashboard/colors" element={<ColorRealm />} />
+    </Routes>
+  );
 }
 
 export default App;
