@@ -9,16 +9,17 @@ import Activity from "../components/dashboard/Activity";
 
 function Dashboard() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
-
+    <div className="min-h-screen bg-[#F7F7F7] text-[#111111]">
+      {/* Sidebar */}
       <DashboardSidebar />
 
+      {/* Main content */}
       <div className="ml-[260px] min-h-screen">
-
+        {/* Top navigation */}
         <DashboardTopbar />
 
+        {/* Dashboard */}
         <main className="p-6 lg:p-8">
-
           <DashboardHeader />
 
           <QuickActions />
@@ -26,11 +27,8 @@ function Dashboard() {
           <RecentProjects />
 
           <Activity />
-
         </main>
-
       </div>
-
     </div>
   );
 }
