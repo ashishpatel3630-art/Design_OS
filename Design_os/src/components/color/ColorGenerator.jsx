@@ -10,7 +10,6 @@ import {
   Save,
   Unlock,
 } from "lucide-react";
-
 const initialColors = [
   "#050505",
   "#171717",
@@ -18,7 +17,6 @@ const initialColors = [
   "#A3A3A3",
   "#F5F5F5",
 ];
-
 function generateColor() {
   const characters = "0123456789ABCDEF";
   let color = "#";
