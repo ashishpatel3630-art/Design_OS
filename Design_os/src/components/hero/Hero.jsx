@@ -85,7 +85,7 @@ const itemVariants = {
   },
 };
 
-export default function Hero() {
+export default function Hero({ onGetStarted }) {
   const containerRef = useRef(null);
 
   // Mouse 3D
@@ -386,7 +386,7 @@ mt-10
 
 "
         >
-          <HeroButtons />
+          <HeroButtons onGetStarted={onGetStarted} />
         </motion.div>
       </motion.div>
     </section>

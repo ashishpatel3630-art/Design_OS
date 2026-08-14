@@ -1,5 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+
 const item = {
   hidden: {
     opacity: 0,
@@ -16,11 +18,15 @@ const item = {
     },
   },
 };
-function HeroButtons() {
+
+function HeroButtons({ onGetStarted }) {
+  const navigate = useNavigate();
+
   return (
     <div>
       <motion.div variants={item} className="flex gap-5 mt-12">
         <motion.button
+          onClick={() => navigate("/login")}
           whileHover={{
             y: -3,
             scale: 1.03,
@@ -40,6 +46,7 @@ function HeroButtons() {
         </motion.button>
 
         <motion.button
+          onClick={onGetStarted || (() => navigate("/login"))}
           whileHover={{
             y: -3,
             scale: 1.03,
@@ -53,7 +60,7 @@ function HeroButtons() {
               font-medium
             "
         >
-          Explore
+          Get Started
         </motion.button>
       </motion.div>
     </div>
