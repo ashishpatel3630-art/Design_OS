@@ -249,3 +249,4 @@ function ColorGenerator() {
 }
 
 export default ColorGenerator;
+

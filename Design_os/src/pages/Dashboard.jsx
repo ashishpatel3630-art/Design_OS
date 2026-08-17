@@ -6,7 +6,8 @@ import TypographyLab from "../components/typography/TypographyLab";
 import WorkspaceProgress from "../components/dashboard/WorkspaceProgress";
 import UserProfile from "../components/dashboard/UserProfile";
 import Tools from "../components/dashboard/Tools";
-
+// import ColorStored from "../components/color/ColorStored";
+import ColorRealm from "./ColorRealm";
 function Dashboard() {
   const location = useLocation();
   const currentPath = location.pathname;
@@ -17,13 +18,15 @@ function Dashboard() {
         return (
           <div className="space-y-6">
             <div className="rounded-3xl border border-[#e7e7e2] bg-white p-6 shadow-sm">
-              <h2 className="text-2xl font-semibold tracking-[-0.05em] text-[#111111]">
-                Color Realm
+              <h2 className="text-3xl font-semibold tracking-[-0.05em] text-[#111111] uppercase">
+                Color Collab
               </h2>
               <p className="mt-2 text-sm text-[#666]">
                 Generate and refine color palettes for your brand system.
               </p>
             </div>
+            {/* <ColorStored/> */}
+            <ColorRealm/>
             <ColorGenerator />
           </div>
         );
