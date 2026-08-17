@@ -95,14 +95,38 @@ function Tools() {
         <p className="text-[10px] text-[#8a8a85] uppercase tracking-[0.18em]">
           Typography
         </p>
-        <h1>
-          
+        <h1 className="font-bold text-3xl mt-2 tracking-tight text-[#111111]">
+          Typography
         </h1>
-        <p>
-
+        <p className="text-sm text-[#8a8a85] mt-2 leading-6">
+          Create your own Typography and make umlimited changes you need and easy to use 
         </p>
       </div>
+        <div className="flex gap-5 mt-6 ">
+          <div className="bg-gray-700 text-[#fff] h-10 w-10 rounded-md text-center justify-center items-center flex">
+          <h1 className="text-[25px]">H1</h1>
+        </div>
 
+        <div className="h-10 w-10 bg-gray-700 rounded-md text-[#fff] text-center flex justify-center items-center">
+          <h1 className="text-[22px]">H2</h1>
+        </div>
+
+
+        <div className="h-10 w-10 bg-gray-700 rounded-md text-[#fff] text-center flex justify-center items-center">
+          <h1 className="text-[#21]">H3</h1>
+        </div>
+
+        <div className="h-10 w-10 bg-gray-700 rounded-md text-[#fff] text-center flex justify-center items-center">
+          <h1 className="text-[#18]">H4</h1>
+        </div>
+        <div className="h-10 w-10 bg-gray-700 rounded-md text-[#fff] text-center flex justify-center items-center">
+        <h1 className="text-[#15]">H5</h1>
+        </div>
+
+        <div className="h-10 w-10 bg-gray-700 rounded-md text-[#fff] text-center flex justify-center items-center">
+        <h1 className="text-[#13]">H6</h1>
+        </div>
+        </div>
     </div>
    </div>
   );
