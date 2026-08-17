@@ -2,6 +2,7 @@ import React from "react";
 
 function Tools() {
   return (
+   <div className="flex gap-10 flex-wrap">
     <div
       className="
     w-[400px] 
@@ -80,6 +81,30 @@ function Tools() {
         </div>
       </div>
     </div>
+    <div
+    className="
+    w-[400px] 
+    h-[250px] 
+    rounded-3xl 
+    border-[#e7e7e2] 
+    bg-white 
+    p-6 
+    shadow-sm"
+    >
+      <div>
+        <p className="text-[10px] text-[#8a8a85] uppercase tracking-[0.18em]">
+          Typography
+        </p>
+        <h1>
+          
+        </h1>
+        <p>
+
+        </p>
+      </div>
+
+    </div>
+   </div>
   );
 }
 
