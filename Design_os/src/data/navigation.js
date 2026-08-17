@@ -12,7 +12,7 @@ export const dashboardNav = [
     section: "System",
     items: [
       { label: "Gradient Studio", path: "/dashboard/gradients", icon: "▣" },
-      { label: "Collaborative Systems", path: "/dashboard/design-systems", icon: "▤" },
+      { label: "Community", path: "/dashboard/design-systems", icon: "⌂" },
       { label: "Collections", path: "/dashboard/collections", icon: "☰" },
       { label: "Favorites", path: "/dashboard/favorites", icon: "♥" },
     ],

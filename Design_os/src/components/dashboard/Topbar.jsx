@@ -11,7 +11,9 @@ function Topbar({ title, subtitle, actions }) {
     <header className="border-b border-[#eceae5] bg-[#f8f8f6] px-6 py-4 lg:px-8">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.18em] text-[#8a8a85]">Dashboard</p>
+          <p className="text-[10px] uppercase tracking-[0.18em] text-[#8a8a85]">
+            Dashboard
+          </p>
           <h1 className="mt-1 text-2xl font-semibold tracking-[-0.05em] text-[#111111]">
             {title || "Overview"}
           </h1>
@@ -40,7 +42,9 @@ function Topbar({ title, subtitle, actions }) {
               {user?.name?.charAt(0)?.toUpperCase() || "A"}
             </div>
             <div className="hidden text-left md:block">
-              <p className="text-xs font-medium text-[#111111]">{user?.name || "Ashish"}</p>
+              <p className="text-xs font-medium text-[#111111]">
+                {user?.name || "Ashish"}
+              </p>
               <p className="text-[10px] text-[#777]">Design Lead</p>
             </div>
             <button
