@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import ColorRealm from "./pages/ColorRealm";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -25,7 +24,7 @@ function App() {
         path="/dashboard/colors"
         element={
           <ProtectedRoute>
-            <ColorRealm />
+            <Dashboard />
           </ProtectedRoute>
         }
       />
@@ -46,14 +45,6 @@ function App() {
         }
       />
       <Route
-        path="/dashboard/ai"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
-      <Route
         path="/dashboard/collections"
         element={
           <ProtectedRoute>
@@ -63,14 +54,6 @@ function App() {
       />
       <Route
         path="/dashboard/favorites"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/dashboard/tokens"
         element={
           <ProtectedRoute>
             <Dashboard />
