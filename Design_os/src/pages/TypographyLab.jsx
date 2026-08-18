@@ -1,40 +1,113 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Search,
   Sun,
   Bell,
-  ChevronDown,
   Type,
   Copy,
   RotateCcw,
+  Check,
+  ChevronDown,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
+  SlidersHorizontal,
+  Sparkles,
+  Command,
+  Minus,
+  Plus,
 } from "lucide-react";
 
-const presets = ["Modern", "Luxury", "Editorial", "Minimal", "Tech"];
+/* =========================================================
+   DATA
+========================================================= */
 
-const fonts = ["Inter", "Helvetica", "Arial", "Georgia", "Times New Roman"];
+const presets = {
+  Modern: {
+    fontFamily: "Inter",
+    fontWeight: "700",
+    fontSize: 72,
+    lineHeight: 1.08,
+    letterSpacing: -2,
+    text: "Design is intelligence made visible.",
+  },
+
+  Luxury: {
+    fontFamily: "Georgia",
+    fontWeight: "400",
+    fontSize: 76,
+    lineHeight: 1.05,
+    letterSpacing: -1.5,
+    text: "Crafted with intention.",
+  },
+
+  Editorial: {
+    fontFamily: "Georgia",
+    fontWeight: "400",
+    fontSize: 68,
+    lineHeight: 1.12,
+    letterSpacing: -1,
+    text: "Ideas deserve beautiful typography.",
+  },
+
+  Minimal: {
+    fontFamily: "Helvetica",
+    fontWeight: "500",
+    fontSize: 64,
+    lineHeight: 1.1,
+    letterSpacing: -2,
+    text: "Less noise. More clarity.",
+  },
+
+  Tech: {
+    fontFamily: "Inter",
+    fontWeight: "600",
+    fontSize: 64,
+    lineHeight: 1.08,
+    letterSpacing: -2.5,
+    text: "Build systems that scale.",
+  },
+};
+
+const fonts = [
+  "Inter",
+  "Helvetica",
+  "Arial",
+  "Georgia",
+  "Times New Roman",
+];
 
 const pairings = [
   {
     heading: "Inter",
     body: "Inter",
     description: "Clean & Modern",
+    sample: "Aa",
   },
   {
     heading: "Helvetica",
     body: "Inter",
     description: "Minimal & Neutral",
+    sample: "Aa",
   },
   {
     heading: "Georgia",
     body: "Inter",
     description: "Editorial & Elegant",
+    sample: "Aa",
   },
   {
     heading: "Arial",
     body: "Helvetica",
     description: "Simple & Professional",
+    sample: "Aa",
   },
 ];
+
+/* =========================================================
+   MAIN COMPONENT
+========================================================= */
 
 function TypographyLab() {
   const [activePreset, setActivePreset] = useState("Modern");
@@ -44,247 +117,715 @@ function TypographyLab() {
   const [fontWeight, setFontWeight] = useState("700");
   const [fontSize, setFontSize] = useState(72);
   const [lineHeight, setLineHeight] = useState(1.1);
-  const [letterSpacing, setLetterSpacing] = useState("-2px");
+  const [letterSpacing, setLetterSpacing] = useState(-2);
   const [textAlign, setTextAlign] = useState("left");
 
   const [previewText, setPreviewText] = useState(
-    "Design is Intelligence Made Visible.",
+    "Design is intelligence made visible."
   );
 
+  const [copied, setCopied] = useState(false);
+
+  /* =========================================================
+     PRESET
+  ========================================================= */
+
+  const applyPreset = (preset) => {
+    const config = presets[preset];
+
+    setActivePreset(preset);
+    setFontFamily(config.fontFamily);
+    setFontWeight(config.fontWeight);
+    setFontSize(config.fontSize);
+    setLineHeight(config.lineHeight);
+    setLetterSpacing(config.letterSpacing);
+    setPreviewText(config.text);
+  };
+
+  /* =========================================================
+     RESET
+  ========================================================= */
+
+  const resetTypography = () => {
+    applyPreset("Modern");
+    setMode("Heading");
+    setTextAlign("left");
+  };
+
+  /* =========================================================
+     CSS OUTPUT
+  ========================================================= */
+
+  const cssOutput = useMemo(
+    () => `font-family: "${fontFamily}";
+font-size: ${fontSize}px;
+font-weight: ${fontWeight};
+line-height: ${lineHeight};
+letter-spacing: ${letterSpacing}px;
+text-align: ${textAlign};`,
+    [
+      fontFamily,
+      fontSize,
+      fontWeight,
+      lineHeight,
+      letterSpacing,
+      textAlign,
+    ]
+  );
+
+  /* =========================================================
+     COPY
+  ========================================================= */
+
+  const copyCSS = async () => {
+    try {
+      await navigator.clipboard.writeText(cssOutput);
+
+      setCopied(true);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 1600);
+    } catch {
+      console.error("Clipboard unavailable");
+    }
+  };
+
+  /* =========================================================
+     FONT SIZE
+  ========================================================= */
+
+  const decreaseSize = () => {
+    setFontSize((value) => Math.max(24, value - 2));
+  };
+
+  const increaseSize = () => {
+    setFontSize((value) => Math.min(120, value + 2));
+  };
+
+  /* =========================================================
+     RENDER
+  ========================================================= */
+
   return (
-    <div className="min-h-screen bg-[#F7F7F7] text-[#111111]">
-      {/* ===================================================== */}
-      {/* TOP HEADER */}
-      {/* ===================================================== */}
+    <div className="min-h-screen bg-[#F6F6F6] text-[#111111]">
 
-      <header className="flex h-[72px] items-center justify-between border-b border-[#E5E5E5] bg-white px-8">
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#E5E5E5] bg-[#F7F7F7]">
-            <Type size={17} className="text-[#333333]" />
-          </div>
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
 
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-[16px] font-semibold tracking-[-0.03em]">
-                Typography Lab
-              </h1>
+      <header className="sticky top-0 z-50 h-[68px] border-b border-[#E5E5E5] bg-white/95 backdrop-blur-xl">
 
-              <span className="text-[#999999]">✦</span>
+        <div className="mx-auto flex h-full max-w-[1600px] items-center justify-between px-5 sm:px-8">
+
+          {/* BRAND */}
+
+          <div className="flex items-center gap-3">
+
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#DDDDDD] bg-[#F7F7F7]">
+
+              <Type
+                size={16}
+                strokeWidth={1.7}
+              />
+
             </div>
 
-            <p className="text-[10px] uppercase tracking-[0.18em] text-[#999999]">
-              Design OS
-            </p>
+            <div>
+
+              <div className="flex items-center gap-2">
+
+                <h1 className="text-[14px] font-semibold tracking-[-0.025em]">
+                  Typography Lab
+                </h1>
+
+                <span className="text-[10px] text-[#AAAAAA]">
+                  /
+                </span>
+
+                <span className="text-[10px] uppercase tracking-[0.12em] text-[#999999]">
+                  Design OS
+                </span>
+
+              </div>
+
+              <p className="mt-0.5 hidden text-[9px] text-[#AAAAAA] sm:block">
+                Type system generator
+              </p>
+
+            </div>
+
           </div>
-        </div>
 
-        {/* Search */}
+          {/* SEARCH */}
 
-        <div className="hidden h-9 w-[300px] items-center gap-3 rounded-lg border border-[#E5E5E5] bg-[#F8F8F8] px-3 md:flex">
-          <Search size={15} strokeWidth={1.5} className="text-[#999999]" />
+          <button
+            className="
+              hidden
+              h-9
+              w-[340px]
+              items-center
+              gap-3
+              rounded-lg
+              border
+              border-[#E4E4E4]
+              bg-[#F8F8F8]
+              px-3
+              text-left
+              transition
+              hover:border-[#CCCCCC]
+              hover:bg-white
+              md:flex
+            "
+          >
 
-          <span className="flex-1 text-[11px] text-[#999999]">
-            Search fonts, styles, combinations...
-          </span>
+            <Search
+              size={14}
+              strokeWidth={1.6}
+              className="text-[#999999]"
+            />
 
-          <span className="rounded border border-[#DDDDDD] bg-white px-1.5 py-0.5 text-[9px] text-[#999999]">
-            ⌘ K
-          </span>
-        </div>
+            <span className="flex-1 text-[10px] text-[#999999]">
+              Search fonts, styles, combinations...
+            </span>
 
-        {/* Right */}
+            <span className="flex items-center gap-1 rounded-md border border-[#DDDDDD] bg-white px-1.5 py-1 text-[8px] text-[#999999]">
+              <Command size={9} />
+              K
+            </span>
 
-        <div className="flex items-center gap-3">
-          <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E5E5] bg-white text-[#666666] transition hover:bg-[#F3F3F3]">
-            <Sun size={15} />
           </button>
 
-          <button className="relative flex h-8 w-8 items-center justify-center rounded-lg border border-[#E5E5E5] bg-white text-[#666666]">
-            <Bell size={15} />
+          {/* ACTIONS */}
 
-            <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-[#111111]" />
-          </button>
+          <div className="flex items-center gap-2">
 
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#111111] text-[10px] font-medium text-white">
-            A
+            <button
+              aria-label="Theme"
+              className="
+                flex
+                h-8
+                w-8
+                items-center
+                justify-center
+                rounded-lg
+                border
+                border-[#E3E3E3]
+                bg-white
+                text-[#666666]
+                transition
+                hover:border-[#CCCCCC]
+                hover:bg-[#F5F5F5]
+                hover:text-[#111111]
+              "
+            >
+              <Sun size={14} />
+            </button>
+
+            <button
+              aria-label="Notifications"
+              className="
+                relative
+                flex
+                h-8
+                w-8
+                items-center
+                justify-center
+                rounded-lg
+                border
+                border-[#E3E3E3]
+                bg-white
+                text-[#666666]
+                transition
+                hover:bg-[#F5F5F5]
+              "
+            >
+              <Bell size={14} />
+
+              <span className="absolute right-[6px] top-[6px] h-1.5 w-1.5 rounded-full bg-[#111111]" />
+
+            </button>
+
+            <div className="ml-1 flex h-8 w-8 items-center justify-center rounded-full bg-[#111111] text-[10px] font-medium text-white">
+              A
+            </div>
+
           </div>
+
         </div>
+
       </header>
 
-      {/* ===================================================== */}
-      {/* PAGE CONTENT */}
-      {/* ===================================================== */}
+      {/* =====================================================
+          MAIN
+      ===================================================== */}
 
-      <main className="mx-auto max-w-[1450px] px-8 py-7">
-        {/* ================================================= */}
-        {/* PRESETS */}
-        {/* ================================================= */}
+      <main className="mx-auto max-w-[1600px] px-5 py-7 sm:px-8 lg:py-9">
 
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="mr-2 text-[10px] uppercase tracking-[0.16em] text-[#999999]">
+        {/* ===================================================
+            PAGE INTRO
+        =================================================== */}
+
+        <div className="mb-8">
+
+          <div className="flex items-start justify-between gap-5">
+
+            <div>
+
+              <div className="mb-2 flex items-center gap-2">
+
+                <span className="h-1.5 w-1.5 rounded-full bg-[#111111]" />
+
+                <span className="text-[9px] font-medium uppercase tracking-[0.2em] text-[#999999]">
+                  Foundation
+                </span>
+
+              </div>
+
+              <h2 className="text-[26px] font-semibold tracking-[-0.045em] sm:text-[32px]">
+                Typography
+              </h2>
+
+              <p className="mt-2 max-w-[580px] text-[11px] leading-5 text-[#888888]">
+                Build, tune and preview a complete typography system
+                with precision.
+              </p>
+
+            </div>
+
+            <button
+              onClick={resetTypography}
+              className="
+                hidden
+                items-center
+                gap-2
+                rounded-lg
+                border
+                border-[#E1E1E1]
+                bg-white
+                px-3
+                py-2
+                text-[10px]
+                text-[#666666]
+                transition
+                hover:border-[#CCCCCC]
+                hover:bg-[#FAFAFA]
+                hover:text-[#111111]
+                sm:flex
+              "
+            >
+              <RotateCcw size={12} />
+              Reset
+            </button>
+
+          </div>
+
+        </div>
+
+        {/* ===================================================
+            PRESETS + MODE
+        =================================================== */}
+
+        <div className="mb-5 flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+
+          <div className="flex flex-wrap items-center gap-1.5">
+
+            <span className="mr-2 text-[9px] font-medium uppercase tracking-[0.18em] text-[#999999]">
               Presets
             </span>
 
-            {presets.map((preset) => (
+            {Object.keys(presets).map((preset) => (
+
               <button
                 key={preset}
-                onClick={() => setActivePreset(preset)}
-                className={`rounded-md px-3 py-1.5 text-[10px] transition ${
-                  activePreset === preset
-                    ? "bg-[#111111] text-white"
-                    : "text-[#666666] hover:bg-[#EDEDED]"
-                }`}
+                onClick={() => applyPreset(preset)}
+                className={`
+                  rounded-md
+                  px-3
+                  py-1.5
+                  text-[10px]
+                  font-medium
+                  transition-all
+                  ${
+                    activePreset === preset
+                      ? "bg-[#111111] text-white shadow-[0_2px_8px_rgba(0,0,0,0.12)]"
+                      : "text-[#666666] hover:bg-[#EAEAEA] hover:text-[#111111]"
+                  }
+                `}
               >
                 {preset}
               </button>
+
             ))}
+
           </div>
 
-          {/* Heading / Paragraph */}
+          <div className="flex items-center justify-between gap-3 xl:justify-end">
 
-          <div className="flex rounded-lg border border-[#E5E5E5] bg-white p-1">
-            {["Heading", "Paragraph"].map((item) => (
-              <button
-                key={item}
-                onClick={() => setMode(item)}
-                className={`rounded-md px-4 py-1.5 text-[10px] transition ${
-                  mode === item ? "bg-[#111111] text-white" : "text-[#777777]"
-                }`}
-              >
-                {item}
-              </button>
-            ))}
+            <span className="text-[9px] uppercase tracking-[0.16em] text-[#AAAAAA]">
+              Preview mode
+            </span>
+
+            <div className="flex rounded-lg border border-[#E3E3E3] bg-white p-1">
+
+              {["Heading", "Paragraph"].map((item) => (
+
+                <button
+                  key={item}
+                  onClick={() => setMode(item)}
+                  className={`
+                    rounded-md
+                    px-4
+                    py-1.5
+                    text-[9px]
+                    font-medium
+                    transition
+                    ${
+                      mode === item
+                        ? "bg-[#111111] text-white"
+                        : "text-[#777777] hover:text-[#111111]"
+                    }
+                  `}
+                >
+                  {item}
+                </button>
+
+              ))}
+
+            </div>
+
           </div>
+
         </div>
 
-        {/* ================================================= */}
-        {/* MAIN EDITOR */}
-        {/* ================================================= */}
+        {/* ===================================================
+            EDITOR
+        =================================================== */}
 
-        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1fr_380px]">
-          {/* =============================================== */}
-          {/* PREVIEW */}
-          {/* =============================================== */}
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_390px]">
 
-          <section className="overflow-hidden rounded-2xl border border-[#E3E3E3] bg-white">
-            {/* Preview header */}
+          {/* =================================================
+              PREVIEW
+          ================================================= */}
 
-            <div className="flex items-center justify-between border-b border-[#E8E8E8] px-5 py-3">
+          <section className="overflow-hidden rounded-2xl border border-[#E1E1E1] bg-white">
+
+            {/* PREVIEW HEADER */}
+
+            <div className="flex items-center justify-between border-b border-[#E8E8E8] px-5 py-3.5">
+
               <div>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-[#999999]">
-                  Live Preview
-                </p>
 
-                <p className="mt-0.5 text-[11px] text-[#555555]">
-                  {activePreset} typography system
-                </p>
-              </div>
+                <div className="flex items-center gap-2">
 
-              <div className="flex gap-2">
-                <button
-                  onClick={() => navigator.clipboard?.writeText(previewText)}
-                  className="flex h-8 items-center gap-2 rounded-md border border-[#E5E5E5] px-3 text-[10px] text-[#666666] hover:bg-[#F5F5F5]"
-                >
-                  <Copy size={13} />
-                  Copy
-                </button>
-
-                <button
-                  onClick={() =>
-                    setPreviewText("Design is Intelligence Made Visible.")
-                  }
-                  className="flex h-8 w-8 items-center justify-center rounded-md border border-[#E5E5E5] text-[#666666] hover:bg-[#F5F5F5]"
-                >
-                  <RotateCcw size={13} />
-                </button>
-              </div>
-            </div>
-
-            {/* Actual typography canvas */}
-
-            <div className="flex min-h-[560px] items-center justify-center bg-[#FAFAFA] p-12">
-              <div className="w-full max-w-[780px] rounded-xl border border-[#E8E8E8] bg-white p-10 shadow-[0_20px_50px_rgba(0,0,0,0.04)]">
-                <div className="mb-8 flex items-center justify-between">
-                  <span className="text-[9px] uppercase tracking-[0.2em] text-[#AAAAAA]">
-                    Typography Preview
+                  <span className="flex h-5 w-5 items-center justify-center rounded bg-[#F2F2F2]">
+                    <Sparkles size={10} />
                   </span>
 
-                  <span className="rounded-full border border-[#E5E5E5] px-2.5 py-1 text-[9px] text-[#888888]">
+                  <p className="text-[10px] font-medium">
+                    Live Preview
+                  </p>
+
+                </div>
+
+                <p className="mt-1 text-[9px] text-[#999999]">
+                  {activePreset} type system
+                </p>
+
+              </div>
+
+              <div className="flex items-center gap-2">
+
+                <button
+                  onClick={copyCSS}
+                  className="
+                    flex
+                    h-8
+                    items-center
+                    gap-2
+                    rounded-md
+                    border
+                    border-[#E2E2E2]
+                    bg-white
+                    px-3
+                    text-[9px]
+                    font-medium
+                    text-[#666666]
+                    transition
+                    hover:border-[#CCCCCC]
+                    hover:bg-[#F8F8F8]
+                    hover:text-[#111111]
+                  "
+                >
+                  {copied ? (
+                    <>
+                      <Check size={12} />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={12} />
+                      Copy CSS
+                    </>
+                  )}
+                </button>
+
+                <button
+                  onClick={resetTypography}
+                  className="
+                    flex
+                    h-8
+                    w-8
+                    items-center
+                    justify-center
+                    rounded-md
+                    border
+                    border-[#E2E2E2]
+                    text-[#666666]
+                    transition
+                    hover:bg-[#F5F5F5]
+                  "
+                  aria-label="Reset"
+                >
+                  <RotateCcw size={12} />
+                </button>
+
+              </div>
+
+            </div>
+
+            {/* CANVAS */}
+
+            <div className="min-h-[540px] bg-[#F8F8F8] p-4 sm:p-8 lg:p-12">
+
+              <div
+                className="
+                  flex
+                  min-h-[500px]
+                  w-full
+                  flex-col
+                  justify-center
+                  rounded-xl
+                  border
+                  border-[#E5E5E5]
+                  bg-white
+                  px-6
+                  py-10
+                  shadow-[0_24px_70px_rgba(0,0,0,0.045)]
+                  sm:px-12
+                  lg:px-16
+                "
+              >
+
+                {/* META */}
+
+                <div className="mb-auto flex items-center justify-between">
+
+                  <div className="flex items-center gap-2">
+
+                    <div className="h-1.5 w-1.5 rounded-full bg-[#111111]" />
+
+                    <span className="text-[8px] font-medium uppercase tracking-[0.22em] text-[#AAAAAA]">
+                      Typography Preview
+                    </span>
+
+                  </div>
+
+                  <span className="rounded-full border border-[#E4E4E4] px-2.5 py-1 text-[8px] uppercase tracking-[0.12em] text-[#888888]">
                     {mode}
                   </span>
+
                 </div>
 
-                <p
-                  contentEditable
-                  suppressContentEditableWarning
-                  onInput={(e) => setPreviewText(e.currentTarget.textContent)}
-                  style={{
-                    fontFamily,
-                    fontWeight,
-                    fontSize: `${mode === "Heading" ? fontSize : 20}px`,
-                    lineHeight: mode === "Heading" ? lineHeight : 1.7,
-                    letterSpacing: mode === "Heading" ? letterSpacing : "0px",
-                    textAlign,
-                  }}
-                  className="outline-none text-[#111111]"
-                >
-                  {previewText}
-                </p>
+                {/* EDITABLE TEXT */}
 
-                <div className="mt-12 border-t border-[#EEEEEE] pt-5">
-                  <div className="flex flex-wrap gap-6 text-[9px] uppercase tracking-[0.15em] text-[#999999]">
-                    <span>{fontFamily}</span>
+                <div className="my-auto py-16">
 
-                    <span>{fontWeight}</span>
+                  <p
+                    contentEditable
+                    suppressContentEditableWarning
+                    onInput={(e) =>
+                      setPreviewText(e.currentTarget.textContent || "")
+                    }
+                    style={{
+                      fontFamily,
+                      fontWeight,
+                      fontSize:
+                        mode === "Heading"
+                          ? `clamp(40px, 6vw, ${fontSize}px)`
+                          : "20px",
+                      lineHeight:
+                        mode === "Heading"
+                          ? lineHeight
+                          : 1.7,
+                      letterSpacing:
+                        mode === "Heading"
+                          ? `${letterSpacing}px`
+                          : "0px",
+                      textAlign,
+                    }}
+                    className="
+                      min-h-[80px]
+                      cursor-text
+                      break-words
+                      text-[#111111]
+                      outline-none
+                      selection:bg-[#111111]
+                      selection:text-white
+                    "
+                  >
+                    {previewText}
+                  </p>
 
-                    <span>{fontSize}px</span>
+                </div>
 
-                    <span>{lineHeight} LH</span>
+                {/* TOKEN INFO */}
+
+                <div className="mt-auto border-t border-[#EEEEEE] pt-5">
+
+                  <div className="flex flex-wrap gap-x-6 gap-y-3">
+
+                    <Token
+                      label="Family"
+                      value={fontFamily}
+                    />
+
+                    <Token
+                      label="Weight"
+                      value={fontWeight}
+                    />
+
+                    <Token
+                      label="Size"
+                      value={`${fontSize}px`}
+                    />
+
+                    <Token
+                      label="Line"
+                      value={lineHeight}
+                    />
+
+                    <Token
+                      label="Tracking"
+                      value={`${letterSpacing}px`}
+                    />
+
                   </div>
+
                 </div>
+
               </div>
+
             </div>
+
           </section>
 
-          {/* =============================================== */}
-          {/* SETTINGS */}
-          {/* =============================================== */}
+          {/* =================================================
+              SETTINGS
+          ================================================= */}
 
-          <aside className="rounded-2xl border border-[#E3E3E3] bg-white">
-            <div className="border-b border-[#E8E8E8] px-5 py-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-[13px] font-medium">Typography Settings</h2>
+          <aside className="h-fit rounded-2xl border border-[#E1E1E1] bg-white">
 
-                <span className="text-[9px] uppercase tracking-[0.15em] text-[#999999]">
-                  Live
-                </span>
+            {/* SETTINGS HEADER */}
+
+            <div className="flex items-center justify-between border-b border-[#E8E8E8] px-5 py-4">
+
+              <div className="flex items-center gap-2">
+
+                <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[#F2F2F2]">
+                  <SlidersHorizontal size={11} />
+                </div>
+
+                <div>
+
+                  <h3 className="text-[11px] font-semibold">
+                    Typography Settings
+                  </h3>
+
+                  <p className="mt-0.5 text-[8px] text-[#AAAAAA]">
+                    Fine tune your system
+                  </p>
+
+                </div>
+
               </div>
+
+              <span className="flex items-center gap-1.5 text-[8px] uppercase tracking-[0.12em] text-[#777777]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#111111]" />
+                Live
+              </span>
+
             </div>
 
+            {/* SETTINGS BODY */}
+
             <div className="space-y-6 p-5">
-              {/* Font Family */}
+
+              {/* FONT FAMILY */}
 
               <SettingBlock label="Font Family">
-                <select
-                  value={fontFamily}
-                  onChange={(e) => setFontFamily(e.target.value)}
-                  className="w-full rounded-lg border border-[#E3E3E3] bg-[#FAFAFA] px-3 py-2.5 text-[11px] outline-none"
-                >
-                  {fonts.map((font) => (
-                    <option key={font}>{font}</option>
-                  ))}
-                </select>
+
+                <div className="relative">
+
+                  <select
+                    value={fontFamily}
+                    onChange={(e) => setFontFamily(e.target.value)}
+                    className="
+                      w-full
+                      appearance-none
+                      rounded-lg
+                      border
+                      border-[#E1E1E1]
+                      bg-[#FAFAFA]
+                      px-3
+                      py-2.5
+                      pr-9
+                      text-[10px]
+                      font-medium
+                      outline-none
+                      transition
+                      hover:border-[#CCCCCC]
+                      focus:border-[#999999]
+                    "
+                  >
+
+                    {fonts.map((font) => (
+                      <option key={font}>
+                        {font}
+                      </option>
+                    ))}
+
+                  </select>
+
+                  <ChevronDown
+                    size={13}
+                    className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#999999]"
+                  />
+
+                </div>
+
               </SettingBlock>
 
-              {/* Weight */}
+              {/* WEIGHT */}
 
               <SettingBlock label="Weight">
-                <div className="grid grid-cols-2 gap-2">
+
+                <div className="grid grid-cols-[1fr_58px] gap-2">
+
                   <select
                     value={fontWeight}
                     onChange={(e) => setFontWeight(e.target.value)}
-                    className="rounded-lg border border-[#E3E3E3] bg-[#FAFAFA] px-3 py-2.5 text-[11px]"
+                    className="
+                      rounded-lg
+                      border
+                      border-[#E1E1E1]
+                      bg-[#FAFAFA]
+                      px-3
+                      py-2.5
+                      text-[10px]
+                      outline-none
+                      focus:border-[#999999]
+                    "
                   >
                     <option value="400">Regular</option>
                     <option value="500">Medium</option>
@@ -293,190 +834,484 @@ function TypographyLab() {
                     <option value="800">Extra Bold</option>
                   </select>
 
-                  <div className="flex items-center rounded-lg border border-[#E3E3E3] bg-[#FAFAFA] px-3 text-[11px] text-[#777777]">
+                  <div className="flex items-center justify-center rounded-lg border border-[#E1E1E1] bg-[#FAFAFA] font-mono text-[9px] text-[#777777]">
                     {fontWeight}
                   </div>
+
                 </div>
+
               </SettingBlock>
 
-              {/* Size */}
+              {/* SIZE */}
 
               <Slider
-                label="Size"
+                label="Font Size"
                 value={fontSize}
                 min={24}
                 max={120}
+                step={1}
                 unit="px"
                 onChange={setFontSize}
+                controls
+                onDecrease={decreaseSize}
+                onIncrease={increaseSize}
               />
 
-              {/* Line Height */}
+              {/* LINE HEIGHT */}
 
               <Slider
                 label="Line Height"
                 value={lineHeight}
                 min={0.8}
                 max={2}
-                step={0.1}
+                step={0.05}
                 unit=""
                 onChange={setLineHeight}
               />
 
-              {/* Letter Spacing */}
+              {/* LETTER SPACING */}
 
-              <SettingBlock label="Letter Spacing">
-                <div className="flex items-center gap-3">
-                  <input
-                    type="range"
-                    min="-5"
-                    max="5"
-                    step="0.5"
-                    value={parseFloat(letterSpacing)}
-                    onChange={(e) => setLetterSpacing(`${e.target.value}px`)}
-                    className="w-full accent-black"
+              <Slider
+                label="Letter Spacing"
+                value={letterSpacing}
+                min={-5}
+                max={5}
+                step={0.5}
+                unit="px"
+                onChange={setLetterSpacing}
+              />
+
+              {/* ALIGNMENT */}
+
+              <SettingBlock label="Text Alignment">
+
+                <div className="grid grid-cols-4 gap-1 rounded-lg border border-[#E3E3E3] bg-[#FAFAFA] p-1">
+
+                  <AlignButton
+                    active={textAlign === "left"}
+                    onClick={() => setTextAlign("left")}
+                    icon={<AlignLeft size={13} />}
                   />
 
-                  <span className="w-12 text-right text-[10px] text-[#777777]">
-                    {letterSpacing}
-                  </span>
+                  <AlignButton
+                    active={textAlign === "center"}
+                    onClick={() => setTextAlign("center")}
+                    icon={<AlignCenter size={13} />}
+                  />
+
+                  <AlignButton
+                    active={textAlign === "right"}
+                    onClick={() => setTextAlign("right")}
+                    icon={<AlignRight size={13} />}
+                  />
+
+                  <AlignButton
+                    active={textAlign === "justify"}
+                    onClick={() => setTextAlign("justify")}
+                    icon={<AlignJustify size={13} />}
+                  />
+
                 </div>
+
               </SettingBlock>
 
-              {/* Alignment */}
-
-              <SettingBlock label="Text Align">
-                <div className="grid grid-cols-4 gap-1 rounded-lg border border-[#E5E5E5] p-1">
-                  {["left", "center", "right", "justify"].map((align) => (
-                    <button
-                      key={align}
-                      onClick={() => setTextAlign(align)}
-                      className={`rounded-md py-2 text-[9px] capitalize ${
-                        textAlign === align
-                          ? "bg-[#111111] text-white"
-                          : "text-[#777777] hover:bg-[#F3F3F3]"
-                      }`}
-                    >
-                      {align}
-                    </button>
-                  ))}
-                </div>
-              </SettingBlock>
-
-              {/* Text Color */}
+              {/* COLOR */}
 
               <SettingBlock label="Text Color">
-                <div className="flex items-center justify-between rounded-lg border border-[#E3E3E3] bg-[#FAFAFA] px-3 py-2.5">
-                  <span className="font-mono text-[10px] text-[#777777]">
-                    #111111
+
+                <div className="flex items-center justify-between rounded-lg border border-[#E1E1E1] bg-[#FAFAFA] px-3 py-2.5">
+
+                  <div className="flex items-center gap-2.5">
+
+                    <div className="h-5 w-5 rounded border border-[#CCCCCC] bg-[#111111]" />
+
+                    <span className="font-mono text-[9px] text-[#666666]">
+                      #111111
+                    </span>
+
+                  </div>
+
+                  <span className="text-[8px] uppercase tracking-[0.1em] text-[#AAAAAA]">
+                    Default
                   </span>
 
-                  <div className="h-5 w-5 rounded border border-[#CCCCCC] bg-[#111111]" />
                 </div>
+
               </SettingBlock>
+
+              {/* CSS PREVIEW */}
+
+              <div className="border-t border-[#EEEEEE] pt-5">
+
+                <div className="mb-2 flex items-center justify-between">
+
+                  <span className="text-[9px] font-medium uppercase tracking-[0.15em] text-[#999999]">
+                    CSS Output
+                  </span>
+
+                  <button
+                    onClick={copyCSS}
+                    className="text-[9px] text-[#777777] hover:text-[#111111]"
+                  >
+                    {copied ? "Copied" : "Copy"}
+                  </button>
+
+                </div>
+
+                <pre
+                  className="
+                    overflow-x-auto
+                    rounded-lg
+                    border
+                    border-[#E5E5E5]
+                    bg-[#F8F8F8]
+                    p-3
+                    font-mono
+                    text-[8px]
+                    leading-5
+                    text-[#666666]
+                  "
+                >
+                  {cssOutput}
+                </pre>
+
+              </div>
+
             </div>
+
           </aside>
+
         </div>
 
-        {/* ================================================= */}
-        {/* FONT PAIRINGS */}
-        {/* ================================================= */}
+        {/* ===================================================
+            FONT PAIRINGS
+        =================================================== */}
 
-        <section className="mt-8">
-          <div className="mb-4 flex items-end justify-between">
+        <section className="mt-10">
+
+          <div className="mb-5 flex items-end justify-between">
+
             <div>
-              <p className="text-[9px] uppercase tracking-[0.18em] text-[#999999]">
+
+              <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-[#AAAAAA]">
                 Recommendations
               </p>
 
-              <h2 className="mt-1 text-[17px] font-medium tracking-[-0.02em]">
-                Font Pairing Suggestions
+              <h2 className="mt-1.5 text-[18px] font-semibold tracking-[-0.03em]">
+                Font Pairings
               </h2>
+
+              <p className="mt-1 text-[9px] text-[#999999]">
+                Curated combinations for different visual directions.
+              </p>
+
             </div>
 
-            <button className="text-[10px] text-[#777777] hover:text-[#111111]">
-              View all →
+            <button className="hidden items-center gap-1 text-[9px] font-medium text-[#777777] transition hover:text-[#111111] sm:flex">
+              Explore library
+              <ChevronDown
+                size={11}
+                className="-rotate-90"
+              />
             </button>
+
           </div>
 
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+
             {pairings.map((pair) => (
+
               <button
                 key={`${pair.heading}-${pair.body}`}
-                className="group rounded-xl border border-[#E3E3E3] bg-white p-5 text-left transition duration-300 hover:-translate-y-0.5 hover:border-[#CCCCCC] hover:shadow-[0_12px_35px_rgba(0,0,0,0.05)]"
+                onClick={() => {
+                  setFontFamily(pair.heading);
+                  setActivePreset("Custom");
+                }}
+                className="
+                  group
+                  rounded-xl
+                  border
+                  border-[#E1E1E1]
+                  bg-white
+                  p-5
+                  text-left
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:border-[#CCCCCC]
+                  hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)]
+                "
               >
+
                 <div className="flex items-start justify-between">
+
                   <div>
-                    <p className="text-[9px] uppercase tracking-[0.15em] text-[#AAAAAA]">
+
+                    <p className="text-[8px] uppercase tracking-[0.16em] text-[#AAAAAA]">
                       Pairing
                     </p>
 
-                    <p className="mt-2 text-[13px] font-medium text-[#111111]">
-                      {pair.heading} × {pair.body}
+                    <p className="mt-2 text-[11px] font-medium">
+                      {pair.heading}
+                      <span className="mx-1.5 text-[#BBBBBB]">
+                        ×
+                      </span>
+                      {pair.body}
                     </p>
+
                   </div>
 
-                  <ChevronDown
-                    size={13}
-                    className="rotate-[-90deg] text-[#BBBBBB] transition group-hover:translate-x-1 group-hover:text-[#555555]"
-                  />
+                  <div className="flex h-7 w-7 items-center justify-center rounded-md border border-[#EEEEEE] text-[#999999] transition group-hover:bg-[#111111] group-hover:text-white">
+                    <ChevronDown
+                      size={12}
+                      className="-rotate-90"
+                    />
+                  </div>
+
                 </div>
 
-                <div className="mt-7">
-                  <p className="text-2xl font-semibold tracking-[-0.04em]">
-                    Aa
+                <div className="mt-8">
+
+                  <p
+                    style={{
+                      fontFamily: pair.heading,
+                    }}
+                    className="text-[38px] font-semibold tracking-[-0.07em] text-[#111111]"
+                  >
+                    {pair.sample}
                   </p>
 
-                  <p className="mt-2 text-[10px] text-[#888888]">
+                  <p className="mt-3 text-[9px] text-[#888888]">
                     {pair.description}
                   </p>
+
                 </div>
+
+                <div className="mt-5 flex items-center justify-between border-t border-[#EEEEEE] pt-3">
+
+                  <span className="text-[8px] uppercase tracking-[0.12em] text-[#AAAAAA]">
+                    Apply pairing
+                  </span>
+
+                  <span className="text-[10px] text-[#999999] transition group-hover:translate-x-1 group-hover:text-[#111111]">
+                    →
+                  </span>
+
+                </div>
+
               </button>
+
             ))}
+
           </div>
+
         </section>
+
+        {/* MOBILE RESET */}
+
+        <button
+          onClick={resetTypography}
+          className="
+            mt-6
+            flex
+            w-full
+            items-center
+            justify-center
+            gap-2
+            rounded-lg
+            border
+            border-[#E1E1E1]
+            bg-white
+            py-2.5
+            text-[9px]
+            text-[#666666]
+            sm:hidden
+          "
+        >
+          <RotateCcw size={12} />
+          Reset Typography
+        </button>
+
       </main>
+
     </div>
   );
 }
 
-/* ========================================================= */
-/* SMALL REUSABLE COMPONENTS                                 */
-/* ========================================================= */
+/* =========================================================
+   TOKEN
+========================================================= */
+
+function Token({ label, value }) {
+  return (
+    <div>
+
+      <p className="mb-1 text-[7px] uppercase tracking-[0.18em] text-[#AAAAAA]">
+        {label}
+      </p>
+
+      <p className="font-mono text-[9px] text-[#555555]">
+        {value}
+      </p>
+
+    </div>
+  );
+}
+
+/* =========================================================
+   SETTING BLOCK
+========================================================= */
 
 function SettingBlock({ label, children }) {
   return (
     <div>
+
       <div className="mb-2 flex items-center justify-between">
-        <label className="text-[10px] font-medium text-[#555555]">
+
+        <label className="text-[9px] font-medium text-[#555555]">
           {label}
         </label>
+
       </div>
 
       {children}
+
     </div>
   );
 }
 
-function Slider({ label, value, min, max, step = 1, unit, onChange }) {
+/* =========================================================
+   SLIDER
+========================================================= */
+
+function Slider({
+  label,
+  value,
+  min,
+  max,
+  step = 1,
+  unit,
+  onChange,
+  controls = false,
+  onDecrease,
+  onIncrease,
+}) {
   return (
     <SettingBlock label={label}>
-      <div className="flex items-center gap-3">
-        <input
-          type="range"
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
-          className="w-full accent-black"
-        />
 
-        <span className="w-12 text-right text-[10px] text-[#777777]">
-          {value}
-          {unit}
-        </span>
+      <div className="space-y-2.5">
+
+        <div className="flex items-center gap-3">
+
+          <input
+            type="range"
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            onChange={(e) =>
+              onChange(Number(e.target.value))
+            }
+            className="
+              h-1
+              w-full
+              cursor-pointer
+              appearance-none
+              rounded-full
+              bg-[#E5E5E5]
+              accent-black
+            "
+          />
+
+          <span className="w-12 text-right font-mono text-[9px] text-[#777777]">
+            {value}
+            {unit}
+          </span>
+
+        </div>
+
+        {controls && (
+          <div className="flex items-center justify-between">
+
+            <button
+              onClick={onDecrease}
+              className="
+                flex
+                h-7
+                w-7
+                items-center
+                justify-center
+                rounded-md
+                border
+                border-[#E2E2E2]
+                bg-white
+                text-[#777777]
+                transition
+                hover:bg-[#F5F5F5]
+                hover:text-[#111111]
+              "
+            >
+              <Minus size={11} />
+            </button>
+
+            <span className="font-mono text-[8px] text-[#AAAAAA]">
+              {min} — {max} {unit}
+            </span>
+
+            <button
+              onClick={onIncrease}
+              className="
+                flex
+                h-7
+                w-7
+                items-center
+                justify-center
+                rounded-md
+                border
+                border-[#E2E2E2]
+                bg-white
+                text-[#777777]
+                transition
+                hover:bg-[#F5F5F5]
+                hover:text-[#111111]
+              "
+            >
+              <Plus size={11} />
+            </button>
+
+          </div>
+        )}
+
       </div>
+
     </SettingBlock>
+  );
+}
+
+/* =========================================================
+   ALIGNMENT BUTTON
+========================================================= */
+
+function AlignButton({ active, onClick, icon }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`
+        flex
+        h-8
+        items-center
+        justify-center
+        rounded-md
+        transition
+        ${
+          active
+            ? "bg-[#111111] text-white shadow-sm"
+            : "text-[#888888] hover:bg-[#EEEEEE] hover:text-[#111111]"
+        }
+      `}
+    >
+      {icon}
+    </button>
   );
 }
 
