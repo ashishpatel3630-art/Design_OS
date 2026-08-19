@@ -6,7 +6,6 @@ import TypographyLab from "../components/typography/TypographyLab";
 import Recent from "../components/dashboard/Recent";
 import Systemhealth from "../components/dashboard/Systemhealth";
 import Tools from "../components/dashboard/Tools";
-// import ColorStored from "../components/color/ColorStored";
 import Team from "../components/dashboard/Team";
 import ColorRealm from "./ColorRealm";
 function Dashboard() {
@@ -18,7 +17,7 @@ function Dashboard() {
       case "/dashboard/colors":
         return (
           <div className="space-y-6">
-            <ColorRealm/>
+            <ColorRealm />
             <ColorGenerator />
           </div>
         );
@@ -36,13 +35,14 @@ function Dashboard() {
                 <p className="text-[10px] uppercase tracking-[0.18em] text-[#8a8a85]">
                   Overview
                 </p>
-                <h2 className="mt-3 max-w-lg text-3xl font-bold tracking-[-0.07em] text-[#111111] sm:text-4xl">
+                <h2 className="mt-3 max-w-lg text-3xl font-bold tracking-[0.05em] text-[#111111] sm:text-4xl">
                   Design Smarter.
                   <span className="mt-1 block">Build Better.</span>
                 </h2>
                 <p className="mt-4 max-w-xl text-sm leading-6 text-[#666666]">
-                  Design OS brings your entire design system into one powerful platform—helping you create, organize,
-                  and scale beautiful interfaces faster and more consistently.
+                  Design OS brings your entire design system into one powerful
+                  platform—helping you create, organize, and scale beautiful
+                  interfaces faster and more consistently.
                 </p>
 
                 <div className="mt-6 flex flex-wrap gap-3">
@@ -56,19 +56,31 @@ function Dashboard() {
 
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
                   {[
-                    { label: 'Projects', value: '14' },
-                    { label: 'Teams', value: '08' },
-                    { label: 'Efficiency', value: '92%' },
+                    { label: "Projects", value: "14", info: "Active Projects" },
+                    { label: "Teams", value: "08", info: "Active Members" },
+                    {
+                      label: "Efficiency",
+                      value: "92%",
+                      info: "Overall Health",
+                    },
                   ].map((item) => (
-                    <div key={item.label} className="rounded-2xl border border-[#efefe9] bg-[#f8f8f6] p-4">
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#8a8a85]">{item.label}</p>
-                      <p className="mt-2 text-2xl font-semibold tracking-[-0.06em] text-[#111111]">{item.value}</p>
+                    <div
+                      key={item.label}
+                      className="rounded-2xl border border-[#efefe9] bg-[#f8f8f6] p-4"
+                    >
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#8a8a85]">
+                        {item.label}
+                      </p>
+                      <p className="mt-2 text-2xl font-semibold tracking-[-0.06em] text-[#111111]">
+                        {item.value}
+                      </p>
+                      <p className="mt-2 text-[12px]">{item.info}</p>
                     </div>
                   ))}
                 </div>
-                <div className="flex justify-between">
-                  <Recent/>
-                  <Systemhealth/>
+                <div className="flex justify-between mt-4">
+                  <Recent />
+                  <Systemhealth />
                 </div>
               </div>
 
