@@ -17,6 +17,10 @@ import {
   Command,
   Minus,
   Plus,
+  Wand2,
+  Maximize2,
+  Lock,
+  Info,
 } from "lucide-react";
 
 /* =========================================================
@@ -30,7 +34,7 @@ const presets = {
     fontSize: 72,
     lineHeight: 1.08,
     letterSpacing: -2,
-    text: "Design is intelligence made visible.",
+    text: "Typography gives ideas a visual voice.",
   },
 
   Luxury: {
@@ -121,7 +125,7 @@ function TypographyLab() {
   const [textAlign, setTextAlign] = useState("left");
 
   const [previewText, setPreviewText] = useState(
-    "Design is intelligence made visible."
+    "Typography gives ideas a visual voice."
   );
 
   const [copied, setCopied] = useState(false);
@@ -208,42 +212,37 @@ text-align: ${textAlign};`,
   ========================================================= */
 
   return (
-    <div className="min-h-screen bg-[#F6F6F6] text-[#111111]">
+    <div className="min-h-screen bg-[#F5F5F5] text-[#111111]">
 
       {/* =====================================================
           HEADER
       ===================================================== */}
 
-      <header className="sticky top-0 z-50 h-[68px] border-b border-[#E5E5E5] bg-white/95 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 h-[70px] border-b border-[#E5E5E5] bg-white/90 backdrop-blur-2xl">
 
-        <div className="mx-auto flex h-full max-w-[1600px] items-center justify-between px-5 sm:px-8">
+        <div className="mx-auto flex h-full max-w-[1680px] items-center justify-between px-5 sm:px-8 lg:px-10">
 
           {/* BRAND */}
 
           <div className="flex items-center gap-3">
 
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#DDDDDD] bg-[#F7F7F7]">
-
-              <Type
-                size={16}
-                strokeWidth={1.7}
-              />
-
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#DDDDDD] bg-[#F8F8F8]">
+              <Type size={16} strokeWidth={1.7} />
             </div>
 
             <div>
 
               <div className="flex items-center gap-2">
 
-                <h1 className="text-[14px] font-semibold tracking-[-0.025em]">
+                <h1 className="text-[14px] font-semibold tracking-[-0.035em]">
                   Typography Lab
                 </h1>
 
-                <span className="text-[10px] text-[#AAAAAA]">
+                <span className="text-[10px] text-[#BBBBBB]">
                   /
                 </span>
 
-                <span className="text-[10px] uppercase tracking-[0.12em] text-[#999999]">
+                <span className="text-[9px] uppercase tracking-[0.15em] text-[#999999]">
                   Design OS
                 </span>
 
@@ -263,7 +262,7 @@ text-align: ${textAlign};`,
             className="
               hidden
               h-9
-              w-[340px]
+              w-[350px]
               items-center
               gap-3
               rounded-lg
@@ -343,7 +342,6 @@ text-align: ${textAlign};`,
               <Bell size={14} />
 
               <span className="absolute right-[6px] top-[6px] h-1.5 w-1.5 rounded-full bg-[#111111]" />
-
             </button>
 
             <div className="ml-1 flex h-8 w-8 items-center justify-center rounded-full bg-[#111111] text-[10px] font-medium text-white">
@@ -360,13 +358,13 @@ text-align: ${textAlign};`,
           MAIN
       ===================================================== */}
 
-      <main className="mx-auto max-w-[1600px] px-5 py-7 sm:px-8 lg:py-9">
+      <main className="mx-auto max-w-[1680px] px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
 
         {/* ===================================================
             PAGE INTRO
         =================================================== */}
 
-        <div className="mb-8">
+        <div className="mb-9">
 
           <div className="flex items-start justify-between gap-5">
 
@@ -376,17 +374,17 @@ text-align: ${textAlign};`,
 
                 <span className="h-1.5 w-1.5 rounded-full bg-[#111111]" />
 
-                <span className="text-[9px] font-medium uppercase tracking-[0.2em] text-[#999999]">
+                <span className="text-[9px] font-medium uppercase tracking-[0.22em] text-[#999999]">
                   Foundation
                 </span>
 
               </div>
 
-              <h2 className="text-[26px] font-semibold tracking-[-0.045em] sm:text-[32px]">
+              <h2 className="text-[28px] font-semibold tracking-[-0.055em] sm:text-[36px]">
                 Typography
               </h2>
 
-              <p className="mt-2 max-w-[580px] text-[11px] leading-5 text-[#888888]">
+              <p className="mt-2 max-w-[600px] text-[11px] leading-5 text-[#888888]">
                 Build, tune and preview a complete typography system
                 with precision.
               </p>
@@ -448,7 +446,7 @@ text-align: ${textAlign};`,
                   transition-all
                   ${
                     activePreset === preset
-                      ? "bg-[#111111] text-white shadow-[0_2px_8px_rgba(0,0,0,0.12)]"
+                      ? "bg-[#111111] text-white shadow-[0_3px_12px_rgba(0,0,0,0.14)]"
                       : "text-[#666666] hover:bg-[#EAEAEA] hover:text-[#111111]"
                   }
                 `}
@@ -557,6 +555,7 @@ text-align: ${textAlign};`,
                     hover:text-[#111111]
                   "
                 >
+
                   {copied ? (
                     <>
                       <Check size={12} />
@@ -568,6 +567,7 @@ text-align: ${textAlign};`,
                       Copy CSS
                     </>
                   )}
+
                 </button>
 
                 <button
@@ -596,12 +596,12 @@ text-align: ${textAlign};`,
 
             {/* CANVAS */}
 
-            <div className="min-h-[540px] bg-[#F8F8F8] p-4 sm:p-8 lg:p-12">
+            <div className="min-h-[570px] bg-[#F8F8F8] p-4 sm:p-8 lg:p-12">
 
               <div
                 className="
                   flex
-                  min-h-[500px]
+                  min-h-[530px]
                   w-full
                   flex-col
                   justify-center
@@ -665,7 +665,7 @@ text-align: ${textAlign};`,
                       textAlign,
                     }}
                     className="
-                      min-h-[80px]
+                      min-h-[100px]
                       cursor-text
                       break-words
                       text-[#111111]
@@ -683,7 +683,7 @@ text-align: ${textAlign};`,
 
                 <div className="mt-auto border-t border-[#EEEEEE] pt-5">
 
-                  <div className="flex flex-wrap gap-x-6 gap-y-3">
+                  <div className="flex flex-wrap gap-x-8 gap-y-4">
 
                     <Token
                       label="Family"
@@ -724,7 +724,7 @@ text-align: ${textAlign};`,
               SETTINGS
           ================================================= */}
 
-          <aside className="h-fit rounded-2xl border border-[#E1E1E1] bg-white">
+          <aside className="h-fit overflow-hidden rounded-2xl border border-[#E1E1E1] bg-white">
 
             {/* SETTINGS HEADER */}
 
@@ -769,7 +769,10 @@ text-align: ${textAlign};`,
 
                   <select
                     value={fontFamily}
-                    onChange={(e) => setFontFamily(e.target.value)}
+                    onChange={(e) => {
+                      setFontFamily(e.target.value);
+                      setActivePreset("Custom");
+                    }}
                     className="
                       w-full
                       appearance-none
@@ -814,7 +817,10 @@ text-align: ${textAlign};`,
 
                   <select
                     value={fontWeight}
-                    onChange={(e) => setFontWeight(e.target.value)}
+                    onChange={(e) => {
+                      setFontWeight(e.target.value);
+                      setActivePreset("Custom");
+                    }}
                     className="
                       rounded-lg
                       border
@@ -827,11 +833,13 @@ text-align: ${textAlign};`,
                       focus:border-[#999999]
                     "
                   >
+
                     <option value="400">Regular</option>
                     <option value="500">Medium</option>
                     <option value="600">Semibold</option>
                     <option value="700">Bold</option>
                     <option value="800">Extra Bold</option>
+
                   </select>
 
                   <div className="flex items-center justify-center rounded-lg border border-[#E1E1E1] bg-[#FAFAFA] font-mono text-[9px] text-[#777777]">
@@ -851,7 +859,10 @@ text-align: ${textAlign};`,
                 max={120}
                 step={1}
                 unit="px"
-                onChange={setFontSize}
+                onChange={(value) => {
+                  setFontSize(value);
+                  setActivePreset("Custom");
+                }}
                 controls
                 onDecrease={decreaseSize}
                 onIncrease={increaseSize}
@@ -866,7 +877,10 @@ text-align: ${textAlign};`,
                 max={2}
                 step={0.05}
                 unit=""
-                onChange={setLineHeight}
+                onChange={(value) => {
+                  setLineHeight(value);
+                  setActivePreset("Custom");
+                }}
               />
 
               {/* LETTER SPACING */}
@@ -878,7 +892,10 @@ text-align: ${textAlign};`,
                 max={5}
                 step={0.5}
                 unit="px"
-                onChange={setLetterSpacing}
+                onChange={(value) => {
+                  setLetterSpacing(value);
+                  setActivePreset("Custom");
+                }}
               />
 
               {/* ALIGNMENT */}
@@ -939,6 +956,33 @@ text-align: ${textAlign};`,
 
               </SettingBlock>
 
+              {/* SYSTEM STATUS */}
+
+              <div className="rounded-xl border border-[#EAEAEA] bg-[#FAFAFA] p-3.5">
+
+                <div className="flex items-start gap-3">
+
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white border border-[#E5E5E5]">
+                    <Wand2 size={12} />
+                  </div>
+
+                  <div>
+
+                    <p className="text-[9px] font-semibold">
+                      System optimized
+                    </p>
+
+                    <p className="mt-1 text-[8px] leading-4 text-[#999999]">
+                      Your current type scale is balanced for
+                      hierarchy and readability.
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </div>
+
               {/* CSS PREVIEW */}
 
               <div className="border-t border-[#EEEEEE] pt-5">
@@ -951,9 +995,19 @@ text-align: ${textAlign};`,
 
                   <button
                     onClick={copyCSS}
-                    className="text-[9px] text-[#777777] hover:text-[#111111]"
+                    className="flex items-center gap-1 text-[9px] text-[#777777] hover:text-[#111111]"
                   >
-                    {copied ? "Copied" : "Copy"}
+                    {copied ? (
+                      <>
+                        <Check size={10} />
+                        Copied
+                      </>
+                    ) : (
+                      <>
+                        <Copy size={10} />
+                        Copy
+                      </>
+                    )}
                   </button>
 
                 </div>
@@ -987,7 +1041,7 @@ text-align: ${textAlign};`,
             FONT PAIRINGS
         =================================================== */}
 
-        <section className="mt-10">
+        <section className="mt-12">
 
           <div className="mb-5 flex items-end justify-between">
 
@@ -997,7 +1051,7 @@ text-align: ${textAlign};`,
                 Recommendations
               </p>
 
-              <h2 className="mt-1.5 text-[18px] font-semibold tracking-[-0.03em]">
+              <h2 className="mt-1.5 text-[19px] font-semibold tracking-[-0.035em]">
                 Font Pairings
               </h2>
 
@@ -1039,7 +1093,7 @@ text-align: ${textAlign};`,
                   duration-300
                   hover:-translate-y-1
                   hover:border-[#CCCCCC]
-                  hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)]
+                  hover:shadow-[0_18px_45px_rgba(0,0,0,0.06)]
                 "
               >
 
@@ -1053,19 +1107,23 @@ text-align: ${textAlign};`,
 
                     <p className="mt-2 text-[11px] font-medium">
                       {pair.heading}
+
                       <span className="mx-1.5 text-[#BBBBBB]">
                         ×
                       </span>
+
                       {pair.body}
                     </p>
 
                   </div>
 
                   <div className="flex h-7 w-7 items-center justify-center rounded-md border border-[#EEEEEE] text-[#999999] transition group-hover:bg-[#111111] group-hover:text-white">
+
                     <ChevronDown
                       size={12}
                       className="-rotate-90"
                     />
+
                   </div>
 
                 </div>
@@ -1076,7 +1134,7 @@ text-align: ${textAlign};`,
                     style={{
                       fontFamily: pair.heading,
                     }}
-                    className="text-[38px] font-semibold tracking-[-0.07em] text-[#111111]"
+                    className="text-[40px] font-semibold tracking-[-0.07em] text-[#111111]"
                   >
                     {pair.sample}
                   </p>
@@ -1107,7 +1165,9 @@ text-align: ${textAlign};`,
 
         </section>
 
-        {/* MOBILE RESET */}
+        {/* ===================================================
+            MOBILE RESET
+        =================================================== */}
 
         <button
           onClick={resetTypography}
@@ -1231,6 +1291,7 @@ function Slider({
         </div>
 
         {controls && (
+
           <div className="flex items-center justify-between">
 
             <button
@@ -1280,6 +1341,7 @@ function Slider({
             </button>
 
           </div>
+
         )}
 
       </div>
