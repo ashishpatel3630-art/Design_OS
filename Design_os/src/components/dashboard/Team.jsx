@@ -1,9 +1,9 @@
 import React from "react";
 
 const members = [
-  { name: "Ava Chen", role: "Product Lead", color: "bg-[#111111]" },
-  { name: "Noah Park", role: "UX Designer", color: "bg-[#7a7a72]" },
-  { name: "Mila Gomez", role: "Motion Lead", color: "bg-[#b5b3aa]" },
+  { name: "Ashish Mewada", role: "Product Lead", color: "bg-[#111111]" },
+  { name: "Deepansh Patel ", role: "UX Designer", color: "bg-[#7a7a72]" },
+  { name: "Neeraj Rajput ", role: "Motion Lead", color: "bg-[#b5b3aa]" },
 ];
 
 function Team() {

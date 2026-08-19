@@ -3,8 +3,8 @@ import { useLocation } from "react-router-dom";
 import DashboardLayout from "../components/dashboard/DashboardLayout";
 import ColorGenerator from "../components/color/ColorGenerator";
 import TypographyLab from "../components/typography/TypographyLab";
-
-
+import Recent from "../components/dashboard/Recent";
+import Systemhealth from "../components/dashboard/Systemhealth";
 import Tools from "../components/dashboard/Tools";
 // import ColorStored from "../components/color/ColorStored";
 import Team from "../components/dashboard/Team";
@@ -65,6 +65,10 @@ function Dashboard() {
                       <p className="mt-2 text-2xl font-semibold tracking-[-0.06em] text-[#111111]">{item.value}</p>
                     </div>
                   ))}
+                </div>
+                <div className="flex justify-between">
+                  <Recent/>
+                  <Systemhealth/>
                 </div>
               </div>
 
