@@ -28,10 +28,10 @@ function Dashboard() {
             <TypographyLab />
           </div>
         );
-        case "/dashboard/typography":
-          return(
+      case "/dashboard/gradient":
+        return (
           <div className="space-y-6">
-            <Gradient/>
+            <Gradient />
           </div>
         );
   
@@ -106,6 +106,8 @@ function Dashboard() {
           ? "Color Realm"
           : currentPath === "/dashboard/typography"
             ? "Typography Lab"
+            : currentPath === "/dashboard/gradient"
+              ? "Gradient Studio"
             : "Overview"
       }
       subtitle={
