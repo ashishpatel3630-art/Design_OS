@@ -8,12 +8,13 @@ import Systemhealth from "../components/dashboard/Systemhealth";
 import Tools from "../components/dashboard/Tools";
 import Team from "../components/dashboard/Team";
 import ColorRealm from "./ColorRealm";
+import Gradient from "../components/Gradient/Gradient";
 function Dashboard() {
   const location = useLocation();
   const currentPath = location.pathname;
 
   const renderContent = () => {
-    switch (currentPath) {
+    switch (currentPath) { 
       case "/dashboard/colors":
         return (
           <div className="space-y-6">
@@ -27,6 +28,13 @@ function Dashboard() {
             <TypographyLab />
           </div>
         );
+        case "/dashboard/typography":
+          return(
+          <div className="space-y-6">
+            <Gradient/>
+          </div>
+        );
+  
       default:
         return (
           <div className="space-y-6">
@@ -45,12 +53,9 @@ function Dashboard() {
                   interfaces faster and more consistently.
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-6 flex flex-wrap gap-3 ">
                   <button className="rounded-xl bg-[#111111] px-4 py-2.5 text-xs font-medium text-white transition hover:bg-[#232323]">
                     Open workspace
-                  </button>
-                  <button className="rounded-xl border border-[#e7e7e2] bg-[#f7f7f5] px-4 py-2.5 text-xs font-medium text-[#111111] transition hover:border-[#d8d8d1]">
-                    Review metrics
                   </button>
                 </div>
 
