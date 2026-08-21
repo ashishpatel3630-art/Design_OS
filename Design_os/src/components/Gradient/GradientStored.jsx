@@ -6,7 +6,7 @@ const initialGradients = [
     name: "Aurora",
     type: "Linear",
     angle: 135,
-    colors: ["#0F0C29", "#302B63", "#24243E", "#00C6FF"],
+    colors: ["#0FAFAD", "#302B63", "#24243E", "#00C6FF"],
     created: "Today",
   },
   {
