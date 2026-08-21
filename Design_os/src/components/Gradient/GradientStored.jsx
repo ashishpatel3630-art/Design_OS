@@ -130,7 +130,6 @@ const initialGradients = [
     created: "Aug 13",
   },
 ];
-
 function GradientStored() {
   const [gradients, setGradients] = useState(initialGradients);
   const [search, setSearch] = useState("");
