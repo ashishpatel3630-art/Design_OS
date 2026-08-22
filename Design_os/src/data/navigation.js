@@ -7,7 +7,7 @@ export const dashboardNav = [
       { label: "Typography Lab", path: "/dashboard/typography", icon: "T" },
       { label: "Motion Playground", path: "/dashboard/motion", icon: "✦" },
       { label: "Gradient Studio", path: "/dashboard/gradient", icon: "▣" },
-      { label: "Shadow Hub", path: "/dashboard/Shadow", icon: "⌂" },
+      { label: "Shadow Hub", path: "/dashboard/shadow", icon: "⌂" },
     ],
   },
   {

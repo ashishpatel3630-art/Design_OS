@@ -9,6 +9,8 @@ import Tools from "../components/dashboard/Tools";
 import Team from "../components/dashboard/Team";
 import ColorRealm from "./ColorRealm";
 import Gradient from "../components/Gradient/Gradient";
+import Shadow from "../components/Shadow/Shadow";
+import Motion from "../components/motion/Motion";
 function Dashboard() {
   const location = useLocation();
   const currentPath = location.pathname;
@@ -32,6 +34,18 @@ function Dashboard() {
         return (
           <div className="space-y-6">
             <Gradient />
+          </div>
+        );
+      case "/dashboard/shadow":
+        return (
+          <div className="space-y-6">
+            <Shadow />
+          </div>
+        );
+      case "/dashboard/motion":
+        return (
+          <div className="space-y-6">
+            <Motion />
           </div>
         );
   
@@ -108,6 +122,10 @@ function Dashboard() {
             ? "Typography Lab"
             : currentPath === "/dashboard/gradient"
               ? "Gradient Studio"
+              : currentPath === "/dashboard/shadow"
+                ? "Shadow Hub"
+                : currentPath === "/dashboard/motion"
+                  ? "Motion Playground"
             : "Overview"
       }
       subtitle={

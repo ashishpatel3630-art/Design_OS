@@ -53,6 +53,14 @@ function App() {
         }
       />
       <Route
+        path="/dashboard/shadow"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
         path="/dashboard/Gradient"
         element={<Navigate to="/dashboard/gradient" replace />}
       />
