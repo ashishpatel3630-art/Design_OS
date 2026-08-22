@@ -1,84 +1,4 @@
-import React from "react";
-
-const animationGroups = [
-  {
-    name: "Entrance",
-    items: [
-      "fadeIn",
-      "fadeInUp",
-      "fadeInDown",
-      "fadeInLeft",
-      "fadeInRight",
-      "slideInUp",
-      "slideInDown",
-      "slideInLeft",
-      "slideInRight",
-      "zoomIn",
-      "bounceIn",
-      "flipInX",
-      "flipInY",
-      "rotateIn",
-    ],
-  },
-  {
-    name: "Attention",
-    items: [
-      "bounce",
-      "flash",
-      "pulse",
-      "rubberBand",
-      "shakeX",
-      "shakeY",
-      "swing",
-      "tada",
-      "wobble",
-      "jello",
-    ],
-  },
-  {
-    name: "Exit",
-    items: [
-      "fadeOut",
-      "fadeOutUp",
-      "fadeOutDown",
-      "fadeOutLeft",
-      "fadeOutRight",
-      "slideOutUp",
-      "slideOutDown",
-      "zoomOut",
-      "flipOutX",
-      "flipOutY",
-    ],
-  },
-  {
-    name: "Text",
-    items: [
-      "textReveal",
-      "textSlideUp",
-      "textSlideDown",
-      "trackingIn",
-      "trackingOut",
-      "focusIn",
-      "focusOut",
-      "blurIn",
-      "blurOut",
-      "textZoom",
-      "textBounce",
-    ],
-  },
-  {
-    name: "3D",
-    items: [
-      "rotateX",
-      "rotateY",
-      "rotateZ",
-      "flipX",
-      "flipY",
-      "cubeIn",
-      "perspectiveIn",
-    ],
-  },
-];
+import React, { useMemo, useState } from "react";
 
 function formatName(name) {
   return name
@@ -86,73 +6,147 @@ function formatName(name) {
     .replace(/^./, (char) => char.toUpperCase());
 }
 
-function Rightside({ activeAnimation, setActiveAnimation, replay }) {
+function Rightside({
+  elementType,
+  activeAnimation,
+  setActiveAnimation,
+  replay,
+  animations,
+}) {
+  const [search, setSearch] = useState("");
+
+  const filteredAnimations = useMemo(() => {
+    return animations.filter((animation) =>
+      animation.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [animations, search]);
+
   return (
-    <aside className="flex h-full w-[330px] shrink-0 flex-col border-l border-[#deded9] bg-white">
-      {/* Header */}
-      <div className="border-b border-[#e7e7e2] p-5">
-        <p className="text-sm font-semibold">Animations</p>
+    <aside className="flex h-full w-[300px] shrink-0 min-h-0 flex-col border-l border-[#deded9] bg-white">
 
-        <p className="mt-1 text-[11px] text-[#999999]">
-          Choose an animation to preview
+      {/* HEADER */}
+
+      <div className="shrink-0 border-b border-[#e7e7e2] p-5">
+
+        <p className="text-sm font-semibold">
+          Animation Library
         </p>
+
+        <p className="mt-1 text-[10px] leading-4 text-[#999999]">
+          Animations available for your {elementType}.
+        </p>
+
       </div>
 
-      {/* Search */}
-      <div className="border-b border-[#e7e7e2] p-4">
+
+      {/* SEARCH */}
+
+      <div className="shrink-0 border-b border-[#e7e7e2] p-4">
+
         <input
-          placeholder="Search animations..."
-          className="h-10 w-full rounded-xl border border-[#deded9] bg-[#fafaf8] px-3 text-xs outline-none focus:border-[#111111]"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Search animation..."
+          className="h-10 w-full rounded-xl border border-[#deded9] bg-[#fafaf8] px-3 text-[10px] outline-none transition focus:border-[#111111]"
         />
+
       </div>
 
-      {/* Library */}
-      <div className="flex-1 overflow-y-auto p-3">
-        {animationGroups.map((group) => (
-          <div key={group.name} className="mb-6">
-            <div className="mb-2 flex items-center justify-between px-2">
-              <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#999999]">
-                {group.name}
-              </p>
 
-              <span className="text-[9px] text-[#c0c0ba]">
-                {group.items.length}
-              </span>
-            </div>
+      {/* COUNT */}
 
-            <div className="space-y-1">
-              {group.items.map((animation) => (
-                <button
-                  key={animation}
-                  onClick={() => {
-                    setActiveAnimation(animation);
-                    replay();
-                  }}
-                  className={`group flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left transition ${
+      <div className="shrink-0 px-4 py-3">
+
+        <div className="flex items-center justify-between">
+
+          <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#999999]">
+            Available
+          </span>
+
+          <span className="rounded-lg bg-[#f4f4f1] px-2 py-1 font-mono text-[9px]">
+            {filteredAnimations.length}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      {/* SCROLLABLE LIBRARY */}
+
+      <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-6">
+
+        <div className="space-y-1">
+
+          {filteredAnimations.map((animation) => (
+
+            <button
+              key={animation}
+              onClick={() => {
+                setActiveAnimation(animation);
+                replay();
+              }}
+              className={`group flex w-full items-center justify-between rounded-xl px-3 py-3 text-left transition ${
+                activeAnimation === animation
+                  ? "bg-[#111111] text-white shadow-sm"
+                  : "text-[#555555] hover:bg-[#f4f4f1] hover:text-[#111111]"
+              }`}
+            >
+
+              <div className="flex items-center gap-3">
+
+                <span
+                  className={`flex h-7 w-7 items-center justify-center rounded-lg text-[9px] ${
                     activeAnimation === animation
-                      ? "bg-[#111111] text-white"
-                      : "text-[#555555] hover:bg-[#f4f4f1] hover:text-[#111111]"
+                      ? "bg-white/10"
+                      : "bg-[#f4f4f1]"
                   }`}
                 >
-                  <span className="text-[11px] font-medium">
-                    {formatName(animation)}
-                  </span>
+                  ✦
+                </span>
 
-                  <span
-                    className={`text-[10px] transition ${
-                      activeAnimation === animation
-                        ? "text-white/50"
-                        : "text-[#c0c0ba] group-hover:text-[#777777]"
-                    }`}
-                  >
-                    →
-                  </span>
-                </button>
-              ))}
+                <span className="text-[10px] font-medium">
+                  {formatName(animation)}
+                </span>
+
+              </div>
+
+
+              <span
+                className={`text-[10px] ${
+                  activeAnimation === animation
+                    ? "text-white/50"
+                    : "text-[#c0c0ba]"
+                }`}
+              >
+                →
+              </span>
+
+            </button>
+
+          ))}
+
+
+          {filteredAnimations.length === 0 && (
+
+            <div className="px-4 py-10 text-center">
+
+              <p className="text-xs font-medium">
+                No animation found
+              </p>
+
+              <p className="mt-1 text-[9px] text-[#999999]">
+                Try another search.
+              </p>
+
             </div>
-          </div>
-        ))}
+
+          )}
+
+        </div>
+
       </div>
+
     </aside>
   );
 }

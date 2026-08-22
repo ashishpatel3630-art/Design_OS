@@ -8,21 +8,33 @@ function MotionTimeline({
   easing,
   setEasing,
   replay,
+  activeAnimation,
+  elementType,
 }) {
+
+  const css = `animation: ${activeAnimation} ${duration}ms ${easing} ${delay}ms both;`;
+
   return (
-    <section className="border-t border-[#deded9] bg-white">
-      {/* Controls */}
-      <div className="grid grid-cols-2 gap-4 p-5 md:grid-cols-4">
-        {/* Duration */}
+    <section className="shrink-0 border-t border-[#deded9] bg-white">
+
+      {/* CONTROL BAR */}
+
+      <div className="grid grid-cols-2 gap-4 p-4 lg:grid-cols-4">
+
+        {/* DURATION */}
+
         <div>
+
           <div className="mb-2 flex justify-between">
+
             <label className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#999999]">
               Duration
             </label>
 
-            <span className="font-mono text-[10px] font-semibold">
+            <span className="font-mono text-[9px] font-semibold">
               {duration}ms
             </span>
+
           </div>
 
           <input
@@ -36,18 +48,24 @@ function MotionTimeline({
             }}
             className="w-full accent-black"
           />
+
         </div>
 
-        {/* Delay */}
+
+        {/* DELAY */}
+
         <div>
+
           <div className="mb-2 flex justify-between">
+
             <label className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#999999]">
               Delay
             </label>
 
-            <span className="font-mono text-[10px] font-semibold">
+            <span className="font-mono text-[9px] font-semibold">
               {delay}ms
             </span>
+
           </div>
 
           <input
@@ -55,13 +73,20 @@ function MotionTimeline({
             min="0"
             max="1000"
             value={delay}
-            onChange={(e) => setDelay(Number(e.target.value))}
+            onChange={(e) => {
+              setDelay(Number(e.target.value));
+              replay();
+            }}
             className="w-full accent-black"
           />
+
         </div>
 
-        {/* Easing */}
+
+        {/* EASING */}
+
         <div>
+
           <label className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#999999]">
             Easing
           </label>
@@ -72,75 +97,165 @@ function MotionTimeline({
               setEasing(e.target.value);
               replay();
             }}
-            className="mt-2 h-9 w-full rounded-xl border border-[#deded9] bg-[#fafaf8] px-3 text-[10px] outline-none"
+            className="mt-2 h-9 w-full rounded-xl border border-[#deded9] bg-[#fafaf8] px-3 text-[9px] outline-none"
           >
-            <option>linear</option>
-            <option>ease</option>
-            <option>ease-in</option>
-            <option>ease-out</option>
-            <option>ease-in-out</option>
-            <option>cubic-bezier(0.16,1,0.3,1)</option>
-            <option>cubic-bezier(0.22,1,0.36,1)</option>
-            <option>cubic-bezier(0.34,1.56,0.64,1)</option>
+
+            <option value="linear">
+              linear
+            </option>
+
+            <option value="ease">
+              ease
+            </option>
+
+            <option value="ease-in">
+              ease-in
+            </option>
+
+            <option value="ease-out">
+              ease-out
+            </option>
+
+            <option value="ease-in-out">
+              ease-in-out
+            </option>
+
+            <option value="cubic-bezier(0.16,1,0.3,1)">
+              Expo
+            </option>
+
+            <option value="cubic-bezier(0.22,1,0.36,1)">
+              Smooth
+            </option>
+
+            <option value="cubic-bezier(0.34,1.56,0.64,1)">
+              Spring
+            </option>
+
           </select>
+
         </div>
 
-        {/* Replay */}
+
+        {/* REPLAY */}
+
         <div className="flex items-end">
+
           <button
             onClick={replay}
-            className="h-9 w-full rounded-xl bg-[#111111] text-[10px] font-medium text-white transition hover:bg-[#242424]"
+            className="h-9 w-full rounded-xl bg-[#111111] text-[9px] font-medium text-white transition hover:bg-[#242424]"
           >
-            ↻ Replay Animation
+            ↻ Replay
           </button>
+
         </div>
+
       </div>
 
-      {/* Timeline */}
-      <div className="border-t border-[#e7e7e2] px-5 py-4">
-        <div className="mb-3 flex justify-between">
-          <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#999999]">
-            Timeline
-          </p>
+
+      {/* TIMELINE */}
+
+      <div className="border-t border-[#e7e7e2] px-4 py-3">
+
+        <div className="mb-2 flex items-center justify-between">
+
+          <div className="flex items-center gap-2">
+
+            <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#999999]">
+              Timeline
+            </p>
+
+            <span className="text-[9px] text-[#cccccc]">
+              /
+            </span>
+
+            <span className="text-[9px] text-[#999999]">
+              {elementType}
+            </span>
+
+            <span className="text-[9px] text-[#cccccc]">
+              /
+            </span>
+
+            <span className="font-mono text-[9px]">
+              {activeAnimation}
+            </span>
+
+          </div>
 
           <span className="font-mono text-[9px] text-[#aaa]">
             0 — {duration + delay}ms
           </span>
+
         </div>
 
-        <div className="relative h-12 overflow-hidden rounded-xl border border-[#e3e3de] bg-[#fafaf8]">
-          {/* Tick lines */}
+
+        <div className="relative h-10 overflow-hidden rounded-xl border border-[#e3e3de] bg-[#fafaf8]">
+
+          {/* TICKS */}
+
           <div className="absolute inset-0 flex justify-between px-2">
-            {Array.from({ length: 9 }).map((_, index) => (
+
+            {Array.from({ length: 11 }).map((_, index) => (
+
               <div
                 key={index}
                 className="h-full w-px bg-[#e9e9e4]"
               />
+
             ))}
+
           </div>
 
-          {/* Animation Track */}
+
+          {/* TRACK */}
+
           <div
-            className="absolute left-2 top-1/2 h-2 -translate-y-1/2 rounded-full bg-[#111111]"
+            className="absolute left-2 top-1/2 h-1.5 -translate-y-1/2 rounded-full bg-[#111111] transition-all"
             style={{
               width: `calc(${Math.min(
-                (duration / 2000) * 100,
-                100,
+                ((duration + delay) / 2000) * 100,
+                100
               )}% - 8px)`,
             }}
           />
 
-          {/* Start */}
-          <span className="absolute bottom-1 left-2 font-mono text-[8px] text-[#aaa]">
+
+          {/* START */}
+
+          <span className="absolute bottom-1 left-2 font-mono text-[7px] text-[#aaa]">
             0ms
           </span>
 
-          {/* End */}
-          <span className="absolute bottom-1 right-2 font-mono text-[8px] text-[#aaa]">
-            {duration}ms
+
+          {/* END */}
+
+          <span className="absolute bottom-1 right-2 font-mono text-[7px] text-[#aaa]">
+            {duration + delay}ms
           </span>
+
         </div>
+
+
+        {/* CSS */}
+
+        <div className="mt-2 flex items-center justify-between">
+
+          <code className="truncate font-mono text-[8px] text-[#888888]">
+            {css}
+          </code>
+
+          <button
+            onClick={() => navigator.clipboard.writeText(css)}
+            className="ml-3 shrink-0 text-[8px] font-medium hover:underline"
+          >
+            Copy CSS
+          </button>
+
+        </div>
+
       </div>
+
     </section>
   );
 }

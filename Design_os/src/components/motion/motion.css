@@ -1,3 +1,17 @@
+/* =========================================================
+   BASE
+========================================================= */
+
+.motion-target {
+  transform-origin: center;
+  will-change: transform, opacity, filter;
+}
+
+
+/* =========================================================
+   ENTRANCE
+========================================================= */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -8,10 +22,11 @@
   }
 }
 
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(60px);
   }
 
   to {
@@ -20,10 +35,24 @@
   }
 }
 
-@keyframes slideInLeft {
+
+@keyframes fadeInDown {
   from {
     opacity: 0;
-    transform: translateX(-100px);
+    transform: translateY(-60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-80px);
   }
 
   to {
@@ -32,10 +61,89 @@
   }
 }
 
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================================
+   SLIDE
+========================================================= */
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(120px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-120px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-120px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(120px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================================
+   ZOOM
+========================================================= */
+
 @keyframes zoomIn {
   from {
     opacity: 0;
-    transform: scale(0.3);
+    transform: scale(0.25);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.06);
   }
 
   to {
@@ -44,50 +152,136 @@
   }
 }
 
+
+@keyframes zoomOut {
+  from {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================================
+   ROTATION
+========================================================= */
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.6);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+
+/* =========================================================
+   FLIP
+========================================================= */
+
+@keyframes flipInX {
+
+  from {
+    opacity: 0;
+    transform: perspective(600px) rotateX(90deg);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  to {
+    transform: perspective(600px) rotateX(0);
+  }
+
+}
+
+
+@keyframes flipInY {
+
+  from {
+    opacity: 0;
+    transform: perspective(600px) rotateY(90deg);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  to {
+    transform: perspective(600px) rotateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   BOUNCE
+========================================================= */
+
 @keyframes bounceIn {
+
   0% {
     opacity: 0;
     transform: scale(0.3);
   }
 
-  50% {
+  35% {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
 
-  70% {
-    transform: scale(0.9);
+  55% {
+    transform: scale(0.92);
+  }
+
+  75% {
+    transform: scale(1.03);
   }
 
   100% {
     transform: scale(1);
   }
+
 }
 
-@keyframes shakeX {
+
+@keyframes bounce {
+
   0%,
   100% {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 
-  20% {
-    transform: translateX(-10px);
+  30% {
+    transform: translateY(-24px);
   }
 
-  40% {
-    transform: translateX(10px);
+  50% {
+    transform: translateY(0);
   }
 
-  60% {
-    transform: translateX(-8px);
+  70% {
+    transform: translateY(-10px);
   }
 
-  80% {
-    transform: translateX(8px);
-  }
 }
 
+
+/* =========================================================
+   ATTENTION
+========================================================= */
+
 @keyframes pulse {
+
   0% {
     transform: scale(1);
   }
@@ -99,9 +293,64 @@
   100% {
     transform: scale(1);
   }
+
 }
 
+
+@keyframes shakeX {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-12px);
+  }
+
+  40% {
+    transform: translateX(12px);
+  }
+
+  60% {
+    transform: translateX(-8px);
+  }
+
+  80% {
+    transform: translateX(8px);
+  }
+
+}
+
+
+@keyframes shakeY {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(-12px);
+  }
+
+  40% {
+    transform: translateY(12px);
+  }
+
+  60% {
+    transform: translateY(-8px);
+  }
+
+  80% {
+    transform: translateY(8px);
+  }
+
+}
+
+
 @keyframes swing {
+
   20% {
     transform: rotate(15deg);
   }
@@ -115,10 +364,432 @@
   }
 
   80% {
-    transform: rotate(-5deg);
+    transform: rotate(-3deg);
   }
 
   100% {
     transform: rotate(0);
   }
+
+}
+
+
+@keyframes tada {
+
+  0% {
+    transform: scale(1) rotate(0);
+  }
+
+  10%,
+  20% {
+    transform: scale(0.9) rotate(-3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale(1.1) rotate(3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: scale(1.1) rotate(-3deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0);
+  }
+
+}
+
+
+@keyframes rubberBand {
+
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+
+  30% {
+    transform: scaleX(1.25) scaleY(0.75);
+  }
+
+  40% {
+    transform: scaleX(0.75) scaleY(1.25);
+  }
+
+  50% {
+    transform: scaleX(1.15) scaleY(0.85);
+  }
+
+  65% {
+    transform: scaleX(0.95) scaleY(1.05);
+  }
+
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+@keyframes textReveal {
+
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+
+}
+
+
+@keyframes textSlideUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(1em);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes textSlideDown {
+
+  from {
+    opacity: 0;
+    transform: translateY(-1em);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes trackingIn {
+
+  from {
+    opacity: 0;
+    letter-spacing: 0.5em;
+  }
+
+  to {
+    opacity: 1;
+    letter-spacing: normal;
+  }
+
+}
+
+
+@keyframes focusIn {
+
+  from {
+    opacity: 0;
+    filter: blur(15px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+}
+
+
+@keyframes blurIn {
+
+  from {
+    opacity: 0;
+    filter: blur(20px);
+    transform: scale(1.05);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+
+}
+
+
+@keyframes textZoom {
+
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  to {
+    transform: scale(1);
+  }
+
+}
+
+
+@keyframes textBounce {
+
+  0% {
+    opacity: 0;
+    transform: translateY(-1em);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(0.25em);
+  }
+
+  75% {
+    transform: translateY(-0.1em);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   3D
+========================================================= */
+
+@keyframes cubeIn {
+
+  from {
+    opacity: 0;
+    transform:
+      perspective(800px)
+      rotateY(-90deg)
+      translateX(-60px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      perspective(800px)
+      rotateY(0)
+      translateX(0);
+  }
+
+}
+
+
+@keyframes perspectiveIn {
+
+  from {
+    opacity: 0;
+    transform:
+      perspective(800px)
+      rotateX(25deg)
+      translateY(50px)
+      scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      perspective(800px)
+      rotateX(0)
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   CANVAS ELEMENTS
+========================================================= */
+
+.motion-button {
+
+  height: 56px;
+  min-width: 180px;
+
+  border-radius: 14px;
+
+  background: #111111;
+  color: white;
+
+  padding: 0 28px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  border: 1px solid #222222;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.18);
+
+}
+
+
+.motion-text {
+
+  display: inline-block;
+
+  font-size: 64px;
+  font-weight: 700;
+
+  letter-spacing: -0.06em;
+
+  color: #111111;
+
+}
+
+
+.motion-div {
+
+  display: flex;
+
+  width: 300px;
+  height: 150px;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 24px;
+
+  border: 1px solid #dcdcd7;
+
+  background: white;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.08);
+
+  font-size: 14px;
+  font-weight: 600;
+
+}
+
+
+.motion-box {
+
+  display: flex;
+
+  width: 180px;
+  height: 180px;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 24px;
+
+  background: #111111;
+
+  color: white;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.18);
+
+}
+
+
+.motion-box-inner {
+
+  width: 110px;
+  height: 110px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255,255,255,0.2);
+
+  font-size: 11px;
+
+}
+
+
+.motion-circle {
+
+  display: flex;
+
+  width: 180px;
+  height: 180px;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+
+  background: #111111;
+
+  color: white;
+
+  font-size: 28px;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.18);
+
+}
+
+
+.motion-navbar {
+
+  display: flex;
+
+  width: 500px;
+  height: 64px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 22px;
+
+  border-radius: 16px;
+
+  border: 1px solid #deded9;
+
+  background: white;
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,0.08);
+
+  font-size: 11px;
+  font-weight: 600;
+
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d0d0cb;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999999;
 }
