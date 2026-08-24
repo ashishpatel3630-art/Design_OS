@@ -11,6 +11,7 @@ import ColorRealm from "./ColorRealm";
 import Gradient from "../components/Gradient/Gradient";
 import Shadow from "../components/Shadow/Shadow";
 import Motion from "../components/motion/Motion";
+import Community from "../components/community/Community";
 function Dashboard() {
   const location = useLocation();
   const currentPath = location.pathname;
@@ -46,6 +47,12 @@ function Dashboard() {
         return (
           <div className="space-y-6">
             <Motion />
+          </div>
+        );
+      case "/dashboard/design-systems":
+        return (
+          <div className="space-y-6">
+            <Community />
           </div>
         );
   
@@ -126,6 +133,8 @@ function Dashboard() {
                 ? "Shadow Hub"
                 : currentPath === "/dashboard/motion"
                   ? "Motion Playground"
+                  : currentPath === "/dashboard/design-systems"
+                    ? "Community"
             : "Overview"
       }
       subtitle={
