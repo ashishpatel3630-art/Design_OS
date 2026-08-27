@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAuth } from "../../context/AuthContext";
 
-const navItems = ["Home", "Products", "Explore"];
+const navItems = ["Home" , "Explore"];
 
 export default function Navbar() {
   const navigate = useNavigate();
