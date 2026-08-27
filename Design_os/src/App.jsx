@@ -21,6 +21,22 @@ function App() {
         }
       />
       <Route
+        path="/dashboard/projects"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/requirements"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
         path="/dashboard/colors"
         element={
           <ProtectedRoute>

@@ -3,6 +3,8 @@ export const dashboardNav = [
     section: "Workspace",
     items: [
       { label: "Overview", path: "/dashboard", icon: "⌂" },
+      { label: "Projects", path: "/dashboard/projects", icon: "▦" },
+      { label: "Requirements", path: "/dashboard/requirements", icon: "✓" },
       { label: "Color Realm", path: "/dashboard/colors", icon: "◌" },
       { label: "Typography Lab", path: "/dashboard/typography", icon: "T" },
       { label: "Motion Playground", path: "/dashboard/motion", icon: "✦" },

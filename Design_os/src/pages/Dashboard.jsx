@@ -12,12 +12,17 @@ import Gradient from "../components/Gradient/Gradient";
 import Shadow from "../components/Shadow/Shadow";
 import Motion from "../components/motion/Motion";
 import Community from "../components/community/Community";
+import ProjectWorkspace from "../components/dashboard/ProjectWorkspace";
 function Dashboard() {
   const location = useLocation();
   const currentPath = location.pathname;
 
   const renderContent = () => {
     switch (currentPath) { 
+      case "/dashboard/projects":
+        return <ProjectWorkspace view="projects" />;
+      case "/dashboard/requirements":
+        return <ProjectWorkspace view="requirements" />;
       case "/dashboard/colors":
         return (
           <div className="space-y-6">
@@ -135,6 +140,10 @@ function Dashboard() {
                   ? "Motion Playground"
                   : currentPath === "/dashboard/design-systems"
                     ? "Community"
+                            : currentPath === "/dashboard/projects"
+                              ? "Projects"
+                              : currentPath === "/dashboard/requirements"
+                                ? "Requirements"
             : "Overview"
       }
       subtitle={
