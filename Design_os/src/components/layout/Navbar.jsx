@@ -11,14 +11,14 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-20">
-      {/* Glass Background */}
+     
       <div className="absolute inset-0 bg-black/60 backdrop-blur-2xl border-b border-white/10" />
 
-      {/* AI Ambient Glow */}
+      
       <div className="absolute -top-20 left-1/2 -translate-x-1/2 h-40 w-[500px] rounded-full bg-purple-500/10 blur-[120px]" />
 
       <div className="relative max-w-7xl mx-auto h-20 px-8 flex items-center justify-between">
-        {/* LOGO */}
+        
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
